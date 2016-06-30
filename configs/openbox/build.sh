@@ -89,7 +89,6 @@ make_setup_mkinitcpio() {
     cp /usr/lib/initcpio/archiso_shutdown ${work_dir}/${arch}/airootfs/etc/initcpio
     cp ${script_path}/mkinitcpio.conf ${work_dir}/${arch}/airootfs/etc/mkinitcpio-archiso.conf
     setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -r 'mkinitcpio -c /etc/mkinitcpio-archiso.conf -k /boot/vmlinuz-linux -g /boot/archiso.img' run
-    #setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -r 'mkinitcpio -c /etc/mkinitcpio-archiso.conf -k /boot/vmlinuz-linux-archassault -g /boot/archiso.img' run
 }
 
 # Customize installation (airootfs)
@@ -109,7 +108,6 @@ make_boot() {
     mkdir -p ${work_dir}/iso/${install_dir}/boot/${arch}
     cp ${work_dir}/${arch}/airootfs/boot/archiso.img ${work_dir}/iso/${install_dir}/boot/${arch}/archiso.img
     cp ${work_dir}/${arch}/airootfs/boot/vmlinuz-linux ${work_dir}/iso/${install_dir}/boot/${arch}/vmlinuz
-    #cp ${work_dir}/${arch}/airootfs/boot/vmlinuz-linux-archassault ${work_dir}/iso/${install_dir}/boot/${arch}/vmlinuz-linux-archassault
 }
 
 # Add other aditional/extra files to ${install_dir}/boot/

@@ -44,26 +44,7 @@ mktorrent -a udp://tracker.coppersurfer.tk:6969/announce \
           -a http://tracker.ipv6tracker.org:80/announce \
           -c "The ArchStrike Project is an Arch Linux based Distro for penetration testers, security professionals and all-around linux enthusiasts." \
           -n "${iso}" -v \
-          -w http://repo.archstrike.org/archassault/iso/${iso} \
-          -w http://mirrorservice.org/sites/repo.archstrike.org/archassault/iso/${iso} \
-          -w http://archstrike.mirror.uber.com.au/iso/http://archassault.mirror.uber.com.au/iso/${iso} \
-          -w http://mirrors.dotsrc.org/archstrike/iso/${iso} \
-          -w http://mirror3.layerjet.com/archstrike/iso/${iso} \
-          -w http://ftp.heanet.ie/pub/archstrike/iso/${iso} \
-          -w http://archstrike.mirror.garr.it/mirrors/archassault/iso/${iso} \
-          -w http://mirror.i3d.net/pub/archstrike/iso/${iso} \
-          -w http://mirror.mephi.ru/archstrike/iso/${iso} \
-          -w http://mirror.yandex.ru/mirrors/archstrike/iso/${iso} \
-          -w http://mirror.zetup.net/archstrike/iso/${iso} \
-          -w http://mirror.bytemark.co.uk/archstrike/iso/${iso} \
-          -w http://mirror.catn.com/pub/archstrike/iso/${iso} \
-          -w http://psg.mtu.edu/pub/archstrike/iso/${iso} \
-          -w http://mirror.jmu.edu/pub/archstrike/iso/${iso} \
-          -w http://mirror.team-cymru.org/archstrike/iso/${iso} \
-          -w http://mirror.umd.edu/archstrike/iso/${iso} \
-          -w http://mirrors.arsc.edu/archstrike/iso/${iso} \
-          -w http://noodle.portalus.net/ArchStrike/iso/${iso} \
-          -w http://mirrors.syringanetworks.net/archstrike/iso/${iso} out/${iso}
+          -w https://mirror.archstrike.org/iso/${iso} \
 }
 
 for arch in i686 x86_64; do 
