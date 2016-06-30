@@ -1,0 +1,9 @@
+# Dirs 
+work/
+out/
+
+# Files
+*.swp
+*~
+*.tmp
+*.log

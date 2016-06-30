@@ -1,0 +1,4 @@
+[Default Applications]
+inode/directory=spacefm.desktop
+text/html=firefox.desktop
+application/TerminalEmulator=terminator.desktop

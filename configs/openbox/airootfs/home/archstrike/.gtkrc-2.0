@@ -1,0 +1,19 @@
+# DO NOT EDIT! This file will be overwritten by LXAppearance.
+# Any customization should be done in ~/.gtkrc-2.0.mine instead.
+
+gtk-theme-name="Adwaita"
+gtk-icon-theme-name="nouveXT.2.2"
+gtk-font-name="Sans 8"
+gtk-cursor-theme-size=0
+gtk-toolbar-style=GTK_TOOLBAR_ICONS
+gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
+gtk-button-images=0
+gtk-menu-images=0
+gtk-enable-event-sounds=1
+gtk-enable-input-feedback-sounds=1
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-hintstyle="hintslight"
+gtk-xft-rgba="rgb"
+gtk-color-scheme="bg_active_color:#666669\nfg_color:#ffffffffffff\nbg_color:#3b3b3b3b3e3e\nscroll_slider:#3b3b3b\n"
+include "/home/spirit/.gtkrc-2.0.mine"

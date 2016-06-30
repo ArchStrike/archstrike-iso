@@ -1,0 +1,71 @@
+background yes
+use_xft yes
+xftfont Sans:size=8
+xftalpha 1
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_type desktop
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 200 200
+maximum_width 200
+draw_shades yes
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+default_color white
+default_shade_color black
+default_outline_color white
+alignment top_left
+gap_x 12
+gap_y 12
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+override_utf8_locale no
+mpd_host 127.0.0.1
+
+TEXT
+${font sans-serif:bold:size=8}SYSTEM ${hr 2}
+${font sans-serif:normal:size=8}$sysname $kernel $alignr $machine
+Host:$alignr$nodename
+Uptime:$alignr$uptime
+
+${font sans-serif:bold:size=8}PROCESSORS ${hr 2}
+${font sans-serif:bold:size=8}${cpugraph cpu1 CDC8B1 FAF0E6}
+CPU 1: ${font sans-serif:normal:size=8}${cpu cpu1} % ${cpubar cpu1}
+${font sans-serif:bold:size=8}${cpugraph cpu2 CDC8B1 FAF0E6}
+CPU 2: ${font sans-serif:normal:size=8}${cpu cpu2} % ${cpubar cpu2}
+
+${font sans-serif:bold:size=8}MEMORY ${hr 2}
+${font sans-serif:bold:size=8}RAM  ${font sans-serif:normal:size=8}$mem / $memmax  $membar
+${font sans-serif:bold:size=8}SWAP  ${font sans-serif:normal:size=8}${swap} / ${swapmax} ${swapbar}
+
+${font sans-serif:bold:size=8}DISKS ${hr 2}
+${font sans-serif:normal:size=8}/ $alignc ${fs_used /} / ${fs_size /} $alignr ${fs_used_perc /}%
+${fs_bar /}
+/home${font sans-serif:normal:size=8} $alignc ${fs_used /home} / ${fs_size /home} $alignr ${fs_used_perc /home}%
+${fs_bar /home}
+External${font sans-serif:normal:size=8} $alignc ${fs_used /media/external} / ${fs_size /media/external} $alignr ${fs_used_perc /media/external}%
+${fs_bar /media/external}
+
+${font sans-serif:bold:size=8}TOP PROCESSES ${hr 2}
+${font sans-serif:normal:size=8}${top_mem name 1}${alignr}${top mem 1} %
+${top_mem name 2}${alignr}${top mem 2} %
+${top_mem name 3}${alignr}${top mem 3} %
+${top_mem name 4}${alignr}${top mem 4} %
+
+${font sans-serif:bold:size=8}NETWORK ${hr 2}
+${font sans-serif:normal:size=8}IP address: $alignr ${addr wlan0}
+ESSID: $alignr ${wireless_essid wlan0}
+Connection quality: $alignr ${wireless_link_qual_perc wlan0}%
+${downspeedgraph wlan0 CDC8B1 FAF0E6}
+DLS:${downspeed wlan0} $alignr total: ${totaldown wlan0}
+${upspeedgraph wlan0 CDC8B1 FAF0E6}
+ULS:${upspeed wlan0} $alignr total: ${totalup wlan0}
+
+${font sans-serif:bold:size=8}BATTERY ${hr 2}
+${font sans-serif:normal:size=8}${battery_bar C23B}
+${battery_short C23B} $alignr ${battery_time C23B}

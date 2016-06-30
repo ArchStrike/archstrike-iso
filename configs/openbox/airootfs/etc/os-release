@@ -1,0 +1,5 @@
+NAME="ArchStrike"
+ID=archstrike
+PRETTY_NAME="ArchStrike"
+ANSI_COLOR="1;33;43"
+HOME_URL="http://www.archstrike.org/"

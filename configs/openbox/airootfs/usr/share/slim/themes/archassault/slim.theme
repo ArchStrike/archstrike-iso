@@ -1,0 +1,48 @@
+# Messages 
+msg_color               #000000
+msg_font                Verdana:size=16:bold
+msg_shadow_xoffset 	1
+msg_shadow_yoffset 	1
+msg_shadow_color   	#aaaaaa
+#msg_shadow_color   	#ff00ff
+
+# Screen background style. Valid values: stretch, tile
+background_style        stretch
+background_color	#FF0033
+
+# Input controls
+#input_panel_x          80%
+#input_panel_y          85%
+input_panel_x           50%
+input_panel_y           16%
+input_name_x            200
+input_name_y            73 
+input_pass_x            200
+input_pass_y            123
+
+input_font          	Verdana:size=14:bold:dpi=96
+input_color		#000000
+input_bgcolor           #000000
+input_fgcolor           #000000
+
+# Welcome message
+welcome_font          	Verdana:size=18:bold
+welcome_color          	#000000
+welcome_x              	24
+welcome_y              	38
+welcome_msg             %host login:
+welcome_shadow_xoffset  2
+welcome_shadow_yoffset  2
+welcome_shadow_color	#ff0000
+
+
+username_msg            username:
+username_font           Verdana:size=14:bold
+username_color		#f5f4fd
+username_x              22
+username_y		72
+
+password_msg		password:
+password_color		#f5f4fd
+password_x              26
+password_y              122
