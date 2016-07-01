@@ -15,15 +15,6 @@ squashfs-tools
 tzdata
 usb_modeswitch
 
-# Cnchi Graphical Installer
-cnchi
-python-mako
-python-mock
-python-lxml
-python-requests
-python-bugsnag
-
-
 # Console Apps
 arch-wiki-lite
 canto-curses
