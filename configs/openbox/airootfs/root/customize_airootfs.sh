@@ -37,211 +37,13 @@ sed -i 's/#\(HandleLidSwitch=\)suspend/\1ignore/' /etc/systemd/logind.conf
 
 
 #Adding in our pacman.conf
-if [[ ${__arch} == i686 ]]; then
-      cat - > /etc/pacman.conf <<'EOF'
-#
-# /etc/pacman.conf
-#
-# See the pacman.conf(5) manpage for option and repository directives
-
-#
-# GENERAL OPTIONS
-#
-[options]
-# The following paths are commented out with their default values listed.
-# If you wish to use different paths, uncomment and update the paths.
-#RootDir     = /
-#DBPath      = /var/lib/pacman/
-#CacheDir    = /var/cache/pacman/pkg/
-#LogFile     = /var/log/pacman.log
-#GPGDir      = /etc/pacman.d/gnupg/
-HoldPkg     = pacman glibc
-#XferCommand = /usr/bin/curl -C - -f %u > %o
-#XferCommand = /usr/bin/wget --passive-ftp -c -O %o %u
-#CleanMethod = KeepInstalled
-#UseDelta    = 0.7
-Architecture = auto
-
-# Pacman won't upgrade packages listed in IgnorePkg and members of IgnoreGroup
-#IgnorePkg   =
-#IgnoreGroup =
-
-#NoUpgrade   =
-#NoExtract   =
-
-# Misc options
-#UseSyslog
-#Color
-#TotalDownload
-# We cannot check disk space from within a chroot environment
-#CheckSpace
-#VerbosePkgLists
-
-# By default, pacman accepts packages signed by keys that its local keyring
-# trusts (see pacman-key and its man page), as well as unsigned packages.
-SigLevel    = Required DatabaseOptional
-LocalFileSigLevel = Optional
-#RemoteFileSigLevel = Required
-
-# NOTE: You must run `pacman-key --init` before first using pacman; the local
-# keyring can then be populated with the keys of all official Arch Linux
-# packagers with `pacman-key --populate archlinux`.
-
-#
-# REPOSITORIES
-#   - can be defined here or included from another file
-#   - pacman will search repositories in the order defined here
-#   - local/custom mirrors can be added here or in separate files
-#   - repositories listed first will take precedence when packages
-#     have identical names, regardless of version number
-#   - URLs will have $repo replaced by the name of the current repo
-#   - URLs will have $arch replaced by the name of the architecture
-#
-# Repository entries are of the format:
-#       [repo-name]
-#       Server = ServerName
-#       Include = IncludePath
-#
-# The header [repo-name] is crucial - it must be present and
-# uncommented to enable the repo.
-#
-
-# The testing repositories are disabled by default. To enable, uncomment the
-# repo name header and Include lines. You can add preferred servers immediately
-# after the header, and they will be used before the default mirrors.
-
-#[testing]
-#Include = /etc/pacman.d/mirrorlist
-
-[core]
-Include = /etc/pacman.d/mirrorlist
-
-[extra]
-Include = /etc/pacman.d/mirrorlist
-
-#[community-testing]
-#Include = /etc/pacman.d/mirrorlist
-
-[community]
-Include = /etc/pacman.d/mirrorlist
-
-#[archstrike-testing]
-#Server = /etc/pacman.d/archstrike-mirrorlist
-
-[archstrike]
-Include = /etc/pacman.d/archstrike-mirrorlist
-
-# An example of a custom package repository.  See the pacman manpage for
-# tips on creating your own repositories.
-#[custom]
-#SigLevel = Optional TrustAll
-#Server = file:///home/custompkgs
-
-EOF
-else
-     cat - > /etc/pacman.conf <<'EOF'
-#
-# /etc/pacman.conf
-#
-# See the pacman.conf(5) manpage for option and repository directives
-
-#
-# GENERAL OPTIONS
-#
-[options]
-# The following paths are commented out with their default values listed.
-# If you wish to use different paths, uncomment and update the paths.
-#RootDir     = /
-#DBPath      = /var/lib/pacman/
-#CacheDir    = /var/cache/pacman/pkg/
-#LogFile     = /var/log/pacman.log
-#GPGDir      = /etc/pacman.d/gnupg/
-HoldPkg     = pacman glibc
-#XferCommand = /usr/bin/curl -C - -f %u > %o
-#XferCommand = /usr/bin/wget --passive-ftp -c -O %o %u
-#CleanMethod = KeepInstalled
-#UseDelta    = 0.7
-Architecture = auto
-
-# Pacman won't upgrade packages listed in IgnorePkg and members of IgnoreGroup
-#IgnorePkg   =
-#IgnoreGroup =
-
-#NoUpgrade   =
-#NoExtract   =
-
-# Misc options
-#UseSyslog
-#Color
-#TotalDownload
-# We cannot check disk space from within a chroot environment
-#CheckSpace
-#VerbosePkgLists
-
-# By default, pacman accepts packages signed by keys that its local keyring
-# trusts (see pacman-key and its man page), as well as unsigned packages.
-SigLevel    = Required DatabaseOptional
-LocalFileSigLevel = Optional
-#RemoteFileSigLevel = Required
-
-# NOTE: You must run `pacman-key --init` before first using pacman; the local
-# keyring can then be populated with the keys of all official Arch Linux
-# packagers with `pacman-key --populate archlinux`.
-
-#
-# REPOSITORIES
-#   - can be defined here or included from another file
-#   - pacman will search repositories in the order defined here
-#   - local/custom mirrors can be added here or in separate files
-#   - repositories listed first will take precedence when packages
-#     have identical names, regardless of version number
-#   - URLs will have $repo replaced by the name of the current repo
-#   - URLs will have $arch replaced by the name of the architecture
-#
-# Repository entries are of the format:
-#       [repo-name]
-#       Server = ServerName
-#       Include = IncludePath
-#
-# The header [repo-name] is crucial - it must be present and
-# uncommented to enable the repo.
-#
-
-# The testing repositories are disabled by default. To enable, uncomment the
-# repo name header and Include lines. You can add preferred servers immediately
-# after the header, and they will be used before the default mirrors.
-
-#[testing]
-#Include = /etc/pacman.d/mirrorlist
-
-[core]
-Include = /etc/pacman.d/mirrorlist
-
-[extra]
-Include = /etc/pacman.d/mirrorlist
-
-#[community-testing]
-#Include = /etc/pacman.d/mirrorlist
-
-[community]
-Include = /etc/pacman.d/mirrorlist
-
-[multilib]
-Include = /etc/pacman.d/mirrorlist
-
-#[archstrike-testing]
-#Server = /etc/pacman.d/archstrike-mirrorlist
-
-[archstrike]
-Include = /etc/pacman.d/archstrike-mirrorlist
-
-# An example of a custom package repository.  See the pacman manpage for
-# tips on creating your own repositories.
-#[custom]
-#SigLevel = Optional TrustAll
-#Server = file:///home/custompkgs
-
-EOF
+echo "Configuring Pacman"
+sed -i 's|^#CheckSpace|CheckSpace|g' /etc/pacman.conf
+if [[ ${__arch} == 'x86_64' ]]; then
+    	echo '' >> /etc/pacman.conf
+        echo '[multilib]' >> /etc/pacman.conf
+        echo 'SigLevel = PackageRequired' >> /etc/pacman.conf
+        echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf
 fi
 
 #start up systemctl processes
@@ -252,6 +54,86 @@ systemctl set-default multi-user.target
 
 #enable vboxclient
 echo "/usr/bin/VBoxClient-all" >> /root/.xinitrc
+
+
+if [[ -d "/usr/share/icons" ]]; then
+		cd /usr/share/icons
+		find . \
+			! -iname '**Cnchi**' \
+			! -iname '**image-missing.svg**' \
+			! -iname '**emblem-default.svg**' \
+			! -iname '**dialog-warning.svg**' \
+			! -iname '**edit-undo**' \
+			! -iname '**list-add**' \
+			! -iname '**list-remove**' \
+			! -iname '**system-run**' \
+			! -iname '**edit-clear-all**' \
+			! -iname 'dialog-***' \
+			! -iname '**-yes.svg**' \
+			! -iname '**_yes.svg**' \
+			! -iname '**-no.svg**' \
+			! -iname '**stock_no.svg**' \
+			! -iname 'nm-***' \
+			! -iname '**system-software-install**' \
+			! -iname '***bluetooth***' \
+			! -iname '***printer***' \
+			! -iname '***firefox***' \
+			! -iname '**network-server**' \
+			! -iname '***preferences-desktop-font***' \
+			! -iname '**fonts**' \
+			! -iname '**applications-accessories**' \
+			! -iname '**text-editor**' \
+			! -iname '**accessories-text-editor**' \
+			! -iname '**gnome-mime-x-directory-smb-share**' \
+			! -iname '**terminal**' \
+			! -iname '**video-display**' \
+			! -iname '**go-next-symbolic**' \
+			! -iname '**go-previous-symbolic**' \
+			! -iname '**_close**' \
+			! -iname '**-close**' \
+			! -iname '**dialog-**' \
+			! -iname 'nm-**' \
+			! -iname 'window-**' \
+			! -iname '**network**' \
+			! -iname 'index.theme' \
+			! -iname '**system-shutdown**' \
+			! -iname '**pan-**' \
+			! -iname '**symbolic**' \
+			! -ipath '**Adwaita**' \
+			! -ipath '**highcolor**' \
+			-type f -delete
+	fi
+
+
+
+# GDK Pixbuf Bug
+gdk-pixbuf-query-loaders --update-cache
+
+# Pacstrap/Pacman bug where hooks are not run inside the chroot
+/usr/bin/update-ca-trust
+
+#make sure we dont keep any pacman pkgs in the cache
+pacman -Scc --noconfirm
+
+# Make ISO thinner
+rm -rf /usr/share/{doc,gtk-doc,info,gtk-2.0,gtk-3.0} || true
+rm -rf /usr/share/{man,gnome} || true
+
+# Build kernel modules that are handled by dkms so we can delete kernel headers to save space
+dkms autoinstall
+
+# Fix sudoers
+chown -R root:root /etc/
+chmod 660 /etc/sudoers
+
+# Black list floppy
+echo "blacklist floppy" > /etc/modprobe.d/nofloppy.conf
+
+# Fix QT apps
+echo 'export GTK2_RC_FILES="$HOME/.gtkrc-2.0"' >> /etc/bash.bashrc
+
+# Remove kernel headers and dkms.
+pacman -Rdd --noconfirm linux-headers dkms
 
 #disable network interface names
 #ln -s /dev/null /etc/udev/rules.d/80-net-name-slot.rules

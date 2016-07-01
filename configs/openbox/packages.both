@@ -214,6 +214,7 @@ zathura
 cairo
 fontconfig
 terminator
+lxterminal
 
 # Network
 b43-fwcutter

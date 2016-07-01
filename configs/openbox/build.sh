@@ -99,7 +99,7 @@ make_customize_airootfs() {
     curl -o ${work_dir}/${arch}/airootfs/etc/pacman.d/mirrorlist 'https://www.archlinux.org/mirrorlist/?country=all&protocol=http&use_mirror_status=on'
 
     #lynx -dump -nolist 'https://wiki.archlinux.org/index.php/Installation_Guide?action=render' >> ${work_dir}/${arch}/airootfs/root/install.txt
-
+    cp -f ${script_path}/pacman.i686.conf ${work_dir}/${arch}/airootfs/etc/pacman.conf
     setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -r '/root/customize_airootfs.sh' run
     rm ${work_dir}/${arch}/airootfs/root/customize_airootfs.sh
 }
@@ -109,7 +109,7 @@ make_boot() {
     mkdir -p ${work_dir}/iso/${install_dir}/boot/${arch}
     cp ${work_dir}/${arch}/airootfs/boot/archiso.img ${work_dir}/iso/${install_dir}/boot/${arch}/archiso.img
     cp ${work_dir}/${arch}/airootfs/boot/vmlinuz-linux ${work_dir}/iso/${install_dir}/boot/${arch}/vmlinuz
-    #cp ${work_dir}/${arch}/airootfs/boot/vmlinuz-linux-archassault ${work_dir}/iso/${install_dir}/boot/${arch}/vmlinuz-linux-archstrike
+    #cp ${work_dir}/${arch}/airootfs/boot/vmlinuz-linux-archstrike ${work_dir}/iso/${install_dir}/boot/${arch}/vmlinuz-linux-archstrike
 }
 
 # Add other aditional/extra files to ${install_dir}/boot/

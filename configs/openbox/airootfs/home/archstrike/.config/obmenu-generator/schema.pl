@@ -64,7 +64,7 @@ our $SCHEMA = [
     {item => ['terminator',    'Terminal',          'terminal']},
     {item => ['firefox',       'Web Browser',       'web-browser']},
     {item => ['dmenu',         'Run command',       'system-run']},
-    {item => ['pidgin',        'Instant messaging', 'system-users']},
+    #{item => ['pidgin',        'Instant messaging', 'system-users']},
 
     {sep => 'Applications'},
 
