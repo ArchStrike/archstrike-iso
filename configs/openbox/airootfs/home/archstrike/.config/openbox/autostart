@@ -1,8 +1,8 @@
 tint2 &
 volumeicon &
-nitrogen --set-scaled /usr/share/wallpapers/OpenBox_Wallpaper.jpg &
-xscreensaver --no-splash &
-clipit  -d &
+feh --bg-fill /usr/share/wallpapers/OpenBox_Wallpaper.jpg &
+#xscreensaver --no-splash &
+clipit -d &
 /usr/bin/VBoxClient-all &
 #wicd-gtk &
 conky &
