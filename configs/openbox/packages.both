@@ -39,7 +39,6 @@ archstrike
 btrfs-progs
 clonezilla
 crda
-
 ddrescue
 dhclient
 dialog
@@ -186,6 +185,7 @@ feh
 cherrytree
 lxappearance
 lxinput
+numix-themes
 obconf
 obkey
 oblogout
