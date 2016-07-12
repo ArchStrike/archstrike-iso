@@ -4,7 +4,7 @@ feh --bg-fill /usr/share/wallpapers/OpenBox_Wallpaper.jpg &
 #xscreensaver --no-splash &
 clipit -d &
 /usr/bin/VBoxClient-all &
-#wicd-gtk &
+wicd-gtk &
 conky &
 # Enable as required
 #xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &

@@ -49,61 +49,12 @@ fi
 #start up systemctl processes
 #systemctl enable multi-user.target pacman-init.service choose-mirror.service
 systemctl disable sshd dhcpcd
+systemctl enable wicd
 systemctl enable pacman-init.service choose-mirror.service
 systemctl set-default multi-user.target
 
 #enable vboxclient
 echo "/usr/bin/VBoxClient-all" >> /root/.xinitrc
-
-
-if [[ -d "/usr/share/icons" ]]; then
-		cd /usr/share/icons
-		find . \
-			! -iname '**Cnchi**' \
-			! -iname '**image-missing.svg**' \
-			! -iname '**emblem-default.svg**' \
-			! -iname '**dialog-warning.svg**' \
-			! -iname '**edit-undo**' \
-			! -iname '**list-add**' \
-			! -iname '**list-remove**' \
-			! -iname '**system-run**' \
-			! -iname '**edit-clear-all**' \
-			! -iname 'dialog-***' \
-			! -iname '**-yes.svg**' \
-			! -iname '**_yes.svg**' \
-			! -iname '**-no.svg**' \
-			! -iname '**stock_no.svg**' \
-			! -iname 'nm-***' \
-			! -iname '**system-software-install**' \
-			! -iname '***bluetooth***' \
-			! -iname '***printer***' \
-			! -iname '***firefox***' \
-			! -iname '**network-server**' \
-			! -iname '***preferences-desktop-font***' \
-			! -iname '**fonts**' \
-			! -iname '**applications-accessories**' \
-			! -iname '**text-editor**' \
-			! -iname '**accessories-text-editor**' \
-			! -iname '**gnome-mime-x-directory-smb-share**' \
-			! -iname '**terminal**' \
-			! -iname '**video-display**' \
-			! -iname '**go-next-symbolic**' \
-			! -iname '**go-previous-symbolic**' \
-			! -iname '**_close**' \
-			! -iname '**-close**' \
-			! -iname '**dialog-**' \
-			! -iname 'nm-**' \
-			! -iname 'window-**' \
-			! -iname '**network**' \
-			! -iname 'index.theme' \
-			! -iname '**system-shutdown**' \
-			! -iname '**pan-**' \
-			! -iname '**symbolic**' \
-			! -ipath '**Adwaita**' \
-			! -ipath '**highcolor**' \
-			-type f -delete
-	fi
-
 
 
 # GDK Pixbuf Bug
@@ -136,7 +87,7 @@ echo 'export GTK2_RC_FILES="$HOME/.gtkrc-2.0"' >> /etc/bash.bashrc
 pacman -Rdd --noconfirm linux-headers dkms
 
 #disable network interface names
-#ln -s /dev/null /etc/udev/rules.d/80-net-name-slot.rules
+ln -s /dev/null /etc/udev/rules.d/80-net-name-slot.rules
 
 # set archstrike users password to reset at login
 #chage -d0 archstrike
