@@ -2,58 +2,15 @@
 # ID 1
 rounded = 0
 border_width = 0
-background_color = #ffffff 5
-border_color = #828282 0
-
-# ID 2 - task active
-rounded = 10
-border_width = 0
-background_color = #d8d8d8 20
-border_color = #cccccc 50
-
-# ID 3 - task
-rounded = 10
-border_width = 0
-background_color = #d8d8d8 0
-border_color = #8F9FBF 90
-
-# ID 4
-rounded = 1
-border_width = 0
-background_color = #888888 50
-border_color = #eeeeee 60
-
-# ID 5 - taskbar
-rounded = 10
-border_width = 0
-background_color = #5d5d5d 50
-border_color = #efefef 60
-
-# ID 6 - active taskbar
-rounded = 10
-border_width = 0
-background_color = #5d5d5d 50
-border_color = #efefef 60
-
-# ID 7 - tooltip
-rounded = 3
-border_width = 0
-background_color = #222222 90
-border_color = #222222 90
-
-# ID 8
-rounded = 4
-border_width = 0
-background_color = #888888 20
-border_color = #8F9FBF 90
+background_color = #333333 8
+border_color = #333333 8
 
 # Panel
 panel_monitor = all
-panel_position = bottom center horizontal
-panel_items = TSBC
+panel_position = top center horizontal
 panel_size = 100% 30
-panel_margin = 0 5
-panel_padding = 4 1
+panel_margin = 0 0
+panel_padding = 5 0 0
 panel_dock = 0
 wm_menu = 1
 panel_layer = top
@@ -69,14 +26,8 @@ strut_policy = follow_size
 # Taskbar
 taskbar_mode = single_desktop
 taskbar_padding = 0 3 0
-taskbar_background_id = 5
-taskbar_active_background_id = 6
-taskbar_name = 0
-taskbar_name_background_id = 0
-taskbar_name_active_background_id = 0
-taskbar_name_font = Liberation Sans 9
-taskbar_name_font_color = #ffffff 100
-taskbar_name_active_font_color = #ffffff 100
+taskbar_background_id = 1
+taskbar_active_background_id = 1
 
 # Tasks
 urgent_nb_of_blink = 20
@@ -85,55 +36,39 @@ task_text = 1
 task_centered = 1
 task_maximum_size = 185 40
 task_padding = 10 2
-task_background_id = 3
-task_active_background_id = 2
-task_urgent_background_id = 4
-task_iconified_background_id = 3
+task_background_id = 1
+task_active_background_id = 0
+task_urgent_background_id = 0
+task_iconified_background_id = 0
 
 # Task Icons
-task_icon_asb = 80 0 0
+task_icon_asb = 100 0 0
 task_active_icon_asb = 100 0 0
 task_urgent_icon_asb = 100 0 0
 task_iconified_icon_asb = 80 0 0
 
 # Fonts
-task_font = Liberation Sans 06_55 8
-task_font_color = #ffffff 85
-task_active_font_color = #ffffff 100
-task_urgent_font_color = #cccccc 100
-task_iconified_font_color = #ffffff 60
+task_font = Hack 10
+task_font_color = #E1E1E1 83
+task_active_font_color = #E1E1E1 100
+task_urgent_font_color = #AB0300 100
+task_iconified_font_color = #E1E1E1 60
 font_shadow = 0
-
-# Launcher
-launcher = 1
-launcher_padding = 8 4 4
-launcher_background_id = 1
-launcher_icon_size = 24
-# Specify icon theme names with launcher_icon_theme. 
-# if you have an XSETTINGS manager running (like xfsettingsd), tint2 will follow your current theme.
-launcher_icon_theme = Faenza-Dark-CrunchBang
-# Each launcher_item_app must be a full path to a .desktop file
-launcher_item_app = /usr/share/applications/terminator.desktop
-launcher_item_app = /usr/share/applications/xfce4-file-manager.desktop
-launcher_item_app = /usr/share/applications/gedit.desktop
-launcher_item_app = /usr/share/applications/iceweasel.desktop
 
 # System Tray
 systray = 1
 systray_padding = 0 3 0
 systray_sort = ascending
-systray_background_id = 5
+systray_background_id = 0
 systray_icon_size = 24
 systray_icon_asb = 100 0 0
 
 # Clock
 time1_format = %a %b %d, %l:%M %p
-time1_font = Liberation Sans 11
-#time2_format = %A %d %B
-#time2_font = Liberation Sans 6
-clock_font_color = #ffffff 100
+time1_font = Hack 10
+clock_font_color = #E1E1E1 100
 clock_padding = 12 4
-clock_background_id = 5
+clock_background_id = 0
 clock_lclick_command = gsimplecal
 clock_rclick_command = gsimplecal
 
@@ -142,9 +77,9 @@ tooltip = 1
 tooltip_padding = 2 2
 tooltip_show_timeout = 0.0
 tooltip_hide_timeout = 0.0
-tooltip_background_id = 7
-tooltip_font_color = #d8d8d8 100
+tooltip_background_id = 0
 tooltip_font = Liberation Sans normal 9.0
+tooltip_font_color = #E1E1E1 100
 
 # Mouse
 mouse_middle = none
@@ -157,9 +92,9 @@ battery = 1
 battery_low_status = 20
 battery_low_cmd = notify-send "battery low"
 battery_hide = 96
-bat1_font = Liberation Mono 8
-bat2_font = Liberation Mono 8
-battery_font_color = #828282 100
+bat1_font = Hack 10
+bat2_font = Hack 10
+battery_font_color = #E1E1E1 100
 battery_padding = 2 0
 battery_background_id = 0
 
