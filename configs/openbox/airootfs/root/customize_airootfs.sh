@@ -86,8 +86,17 @@ echo 'export GTK2_RC_FILES="$HOME/.gtkrc-2.0"' >> /etc/bash.bashrc
 # Remove kernel headers and dkms.
 pacman -Rdd --noconfirm linux-headers dkms
 
+# sync pacman dbs
+pacman -Syy
+
+# fix oblogout issues by forcing sudo usage
+sed -i "s|systemctl poweroff|sudo systemctl poweroff|" /etc/oblogout.conf
+sed -i "s|systemctl reboot|sudo systemctl reboot|" /etc/oblogout.conf
+sed -i "s|systemctl suspend|sudo systemctl suspend|" /etc/oblogout.conf
+sed -i "s|systemctl hibernate|sudo systemctl hibernate|" /etc/oblogout.conf
+
 #disable network interface names
-ln -s /dev/null /etc/udev/rules.d/80-net-name-slot.rules
+#ln -s /dev/null /etc/udev/rules.d/80-net-name-slot.rules
 
 # set archstrike users password to reset at login
 #chage -d0 archstrike
