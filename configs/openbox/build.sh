@@ -138,13 +138,17 @@ make_pkgcache() {
 # Prepare /${install_dir}/boot/syslinux
 make_syslinux() {
     mkdir -p ${work_dir}/iso/${install_dir}/boot/syslinux
-    for _cfg in ${script_path}/syslinux/*.cfg; do
-        sed "s|%ARCHISO_LABEL%|${iso_label}|g;
-             s|%INSTALL_DIR%|${install_dir}|g" ${_cfg} > ${work_dir}/iso/${install_dir}/boot/syslinux/${_cfg##*/}
-    done
     if [[ ${arch} == 'i686' ]]; then
-          echo "Removing 64bit syslinux files from workdir"
-          rm -rfv ${work_dir}/iso/${install_dir}/boot/syslinux/*64.cfg
+          for _cfg in ${script_path}/syslinux/i686/*.cfg; do
+             sed "s|%ARCHISO_LABEL%|${iso_label}|g;
+                  s|%INSTALL_DIR%|${install_dir}|g" ${_cfg} > ${work_dir}/iso/${install_dir}/boot/syslinux/${_cfg##*/}
+          done
+    fi
+    if [[ ${arch} == 'x86_64' ]]; then
+          for _cfg in ${script_path}/syslinux/x86_64/*.cfg; do
+              sed "s|%ARCHISO_LABEL%|${iso_label}|g;
+                   s|%INSTALL_DIR%|${install_dir}|g" ${_cfg} > ${work_dir}/iso/${install_dir}/boot/syslinux/${_cfg##*/}
+          done
     fi
     cp ${script_path}/syslinux/splash.png ${work_dir}/iso/${install_dir}/boot/syslinux
     cp ${work_dir}/${arch}/airootfs/usr/lib/syslinux/bios/*.c32 ${work_dir}/iso/${install_dir}/boot/syslinux
@@ -265,11 +269,11 @@ while getopts 'A:N:V:L:D:w:o:vh' arg; do
     esac
 done
 
-if [[ ${arch} == "i686" ]]; then
-      sed -i 's/APPEND have64/APPEND nohave64/' ./syslinux/archiso_sys_choose.cfg
-else
-      sed -i 's/APPEND nohave64/APPEND have64/' ./syslinux/archiso_sys_choose.cfg
-fi
+#if [[ ${arch} == "i686" ]]; then
+#      sed -i 's/APPEND have64/APPEND nohave64/' ./syslinux/archiso_sys_choose.cfg
+#else
+#      sed -i 's/APPEND nohave64/APPEND have64/' ./syslinux/archiso_sys_choose.cfg
+#fi
 
 mkdir -p ${work_dir}
 
