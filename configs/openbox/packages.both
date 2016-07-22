@@ -34,6 +34,8 @@ wgetpaste
 
 # ArchStrike
 archstrike
+archstrike-installer
+archstrike-mirrorlist
 
 # Filesystems
 btrfs-progs

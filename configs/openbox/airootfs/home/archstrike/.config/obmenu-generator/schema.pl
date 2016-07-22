@@ -64,6 +64,7 @@ our $SCHEMA = [
     {item => ['terminator',    'Terminal',          'terminal']},
     {item => ['firefox',       'Web Browser',       'web-browser']},
     {item => ['dmenu',         'Run command',       'system-run']},
+    {item => ['terminator -e "sudo /usr/bin/archstrike-installer;bash"', 'Install ArchStrike', 'install archstrike']},
     #{item => ['pidgin',        'Instant messaging', 'system-users']},
 
     {sep => 'Applications'},
