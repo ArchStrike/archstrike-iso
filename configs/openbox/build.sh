@@ -50,12 +50,12 @@ run_once() {
 make_pacman_conf() {
     local _cache_dirs
     _cache_dirs=($(pacman -v 2>&1 | grep '^Cache Dirs:' | sed 's/Cache Dirs:\s*//g'))
-    if [[ ${arch} == "x86_64" ]]; then
+    if [[ "$arch" = 'x86_64' ]]; then
         sed -r "s|^#?\\s*CacheDir.+|CacheDir = $(echo -n ${_cache_dirs[@]})|g" ${script_path}/pacman.x86_64.conf > ${pacman_conf}
     else
         sed -r "s|^#?\\s*CacheDir.+|CacheDir = $(echo -n ${_cache_dirs[@]})|g" ${script_path}/pacman.i686.conf > ${pacman_conf}
     fi
-   # sed -r "s|^#?\\s*CacheDir.+|CacheDir = $(echo -n ${_cache_dirs[@]})|g" ${script_path}/pacman.conf > ${pacman_conf}
+    # sed -r "s|^#?\\s*CacheDir.+|CacheDir = $(echo -n ${_cache_dirs[@]})|g" ${script_path}/pacman.conf > ${pacman_conf}
 }
 
 # Base installation, plus needed packages (airootfs)
@@ -66,12 +66,13 @@ make_basefs() {
 
 # Additional packages (airootfs)
 make_packages() {
-    if [[ ${arch} == "x86_64" ]]; then
-          # remove gcc-libs to avoid conflict with gcc-libs-multilib
-          setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -r "pacman -Rdd --noconfirm gcc-libs" run
+    if [[ "$arch" = 'x86_64' ]]; then
+        # remove gcc-libs to avoid conflict with gcc-libs-multilib
+        setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -r "pacman -Rdd --noconfirm gcc-libs" run
     fi
-          setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -r "pacman -Rdd --noconfirm cryptsetup" run
-          setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -p "$(grep -h -v ^# ${script_path}/packages.{both,${arch}})" install
+
+    setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -r "pacman -Rdd --noconfirm cryptsetup" run
+    setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -p "$(grep -h -v '^#' ${script_path}/packages.{both,${arch}})" install
 }
 
 
@@ -122,15 +123,14 @@ make_boot_extra() {
 
 # Fetch packages for offline installation
 make_pkgcache() {
-    for pkg in $(grep -h -v ^# ${script_path}/pkgcache.{both,${arch}})
-    do
+    for pkg in $(grep -h -v '^#' ${script_path}/pkgcache.{both,${arch}}); do
         rm -f /var/cache/pacman/pkg/${pkg}-*
         # Get the download link from pacman
-		pkg_path=$(pacman -Sp ${pkg})
+        pkg_path=$(pacman -Sp ${pkg})
         # Download the package
-		wget -P ${work_dir}/${arch}/airootfs/var/cache/pacman/pkg ${pkg_path}
+        wget -P ${work_dir}/${arch}/airootfs/var/cache/pacman/pkg ${pkg_path}
         # Download the signature file
-		wget -P ${work_dir}/${arch}/airootfs/var/cache/pacman/pkg ${pkg_path}.sig
+        wget -P ${work_dir}/${arch}/airootfs/var/cache/pacman/pkg ${pkg_path}.sig
     done
 }
 
@@ -138,17 +138,17 @@ make_pkgcache() {
 # Prepare /${install_dir}/boot/syslinux
 make_syslinux() {
     mkdir -p ${work_dir}/iso/${install_dir}/boot/syslinux
-    if [[ ${arch} == 'i686' ]]; then
-          for _cfg in ${script_path}/syslinux/i686/*.cfg; do
-             sed "s|%ARCHISO_LABEL%|${iso_label}|g;
-                  s|%INSTALL_DIR%|${install_dir}|g" ${_cfg} > ${work_dir}/iso/${install_dir}/boot/syslinux/${_cfg##*/}
-          done
+    if [[ "$arch" = 'i686' ]]; then
+        for _cfg in ${script_path}/syslinux/i686/*.cfg; do
+            sed "s|%ARCHISO_LABEL%|${iso_label}|g;
+            s|%INSTALL_DIR%|${install_dir}|g" ${_cfg} > ${work_dir}/iso/${install_dir}/boot/syslinux/${_cfg##*/}
+        done
     fi
-    if [[ ${arch} == 'x86_64' ]]; then
-          for _cfg in ${script_path}/syslinux/x86_64/*.cfg; do
-              sed "s|%ARCHISO_LABEL%|${iso_label}|g;
-                   s|%INSTALL_DIR%|${install_dir}|g" ${_cfg} > ${work_dir}/iso/${install_dir}/boot/syslinux/${_cfg##*/}
-          done
+    if [[ "$arch" = 'x86_64' ]]; then
+        for _cfg in ${script_path}/syslinux/x86_64/*.cfg; do
+            sed "s|%ARCHISO_LABEL%|${iso_label}|g;
+            s|%INSTALL_DIR%|${install_dir}|g" ${_cfg} > ${work_dir}/iso/${install_dir}/boot/syslinux/${_cfg##*/}
+        done
     fi
     cp ${script_path}/syslinux/splash.png ${work_dir}/iso/${install_dir}/boot/syslinux
     cp ${work_dir}/${arch}/airootfs/usr/lib/syslinux/bios/*.c32 ${work_dir}/iso/${install_dir}/boot/syslinux
@@ -182,7 +182,7 @@ make_efi() {
     cp ${script_path}/efiboot/loader/entries/uefi-shell-v1-x86_64.conf ${work_dir}/iso/loader/entries/
 
     sed "s|%ARCHISO_LABEL%|${iso_label}|g;
-         s|%INSTALL_DIR%|${install_dir}|g" \
+    s|%INSTALL_DIR%|${install_dir}|g" \
         ${script_path}/efiboot/loader/entries/archiso-x86_64-usb.conf > ${work_dir}/iso/loader/entries/archiso-x86_64.conf
 
     # EFI Shell 2.0 for UEFI 2.3+
@@ -218,7 +218,7 @@ make_efiboot() {
     cp ${script_path}/efiboot/loader/entries/uefi-shell-v1-x86_64.conf ${work_dir}/efiboot/loader/entries/
 
     sed "s|%ARCHISO_LABEL%|${iso_label}|g;
-         s|%INSTALL_DIR%|${install_dir}|g" \
+    s|%INSTALL_DIR%|${install_dir}|g" \
         ${script_path}/efiboot/loader/entries/archiso-x86_64-cd.conf > ${work_dir}/efiboot/loader/entries/archiso-x86_64.conf
 
     cp ${work_dir}/iso/EFI/shellx64_v2.efi ${work_dir}/efiboot/EFI/
@@ -263,13 +263,13 @@ while getopts 'A:N:V:L:D:w:o:vh' arg; do
         v) verbose="-v" ;;
         h) _usage 0 ;;
         *)
-           echo "Invalid argument '${arg}'"
-           _usage 1
-           ;;
+            echo "Invalid argument '${arg}'"
+            _usage 1
+            ;;
     esac
 done
 
-#if [[ ${arch} == "i686" ]]; then
+#if [[ "$arch" = 'i686' ]]; then
 #      sed -i 's/APPEND have64/APPEND nohave64/' ./syslinux/archiso_sys_choose.cfg
 #else
 #      sed -i 's/APPEND nohave64/APPEND have64/' ./syslinux/archiso_sys_choose.cfg
@@ -291,9 +291,9 @@ run_once make_boot_extra
 run_once make_syslinux
 run_once make_isolinux
 
-if [[ ${arch} == "x86_64" ]];then
-      run_once make_efi
-      run_once make_efiboot
+if [[ "$arch" = 'x86_64' ]];then
+    run_once make_efi
+    run_once make_efiboot
 fi
 
 run_once make_prepare
