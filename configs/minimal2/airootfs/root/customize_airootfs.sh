@@ -57,7 +57,7 @@ chmod 660 /etc/sudoers
 printf '%s\n' 'blacklist floppy' > /etc/modprobe.d/nofloppy.conf
 
 # Remove dkms.
-pacman -Rdd --noconfirm dkms
+pacman -Rdd --noconfirm linux-headers dkms
 
 # sync pacman dbs
 pacman -Syy
