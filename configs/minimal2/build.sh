@@ -3,7 +3,7 @@
 set -e -u
 
 iso_name=ArchStrike
-iso_label="ARCH_$(date +%Y%m)"
+iso_label="ArchStrike_$(date +%Y%m)"
 iso_version=minimal-$(date +%Y.%m.%d)
 install_dir=arch
 work_dir=work

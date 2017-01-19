@@ -1,3 +1,13 @@
-View this installation guide online at
-https://wiki.archlinux.org/index.php/Installation_Guide
+
+
+
+Welcome to the ArchStrike Minimal ISO!
+
+Run 'install-archstrike' to start the installation
+
+Website     https://archstrike.org
+Twitter     @ArchStrike
+IRC         #archstrike @ freenode.net
+
+
 
