@@ -63,4 +63,16 @@ pacman -Rdd --noconfirm dkms
 pacman -Syy
 
 # modify /etc/issue
-echo "ArchStrike Minimal | Linux kernel version: \\r | tty: (\\l)" > /etc/issue
+echo "ArchStrike Minimal | Linux kernel version: \\r | tty: (\\l)
+
+
+Welcome to the ArchStrike Minimal ISO!
+
+Run 'install-archstrike' to start the installation.
+
+Website     https://archstrike.org
+Twitter     @ArchStrike
+IRC         #archstrike @ freenode.net
+
+
+" > /etc/issue
