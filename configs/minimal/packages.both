@@ -63,9 +63,9 @@ wpa_supplicant
 wvdial
 xl2tpd
 zd1211-firmware
+zsh
 
 #ArchStrike
 archstrike-keyring
 archstrike-mirrorlist
 archstrike-installer
-
