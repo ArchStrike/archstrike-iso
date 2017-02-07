@@ -34,7 +34,7 @@ fi
 #start up systemctl processes
 #systemctl enable multi-user.target pacman-init.service choose-mirror.service
 systemctl disable sshd
-systemctl enable pacman-init.service choose-mirror.service
+systemctl enable pacman-init.service choose-mirror.service dhcpcd.service
 systemctl set-default multi-user.target
 
 # Pacstrap/Pacman bug where hooks are not run inside the chroot
