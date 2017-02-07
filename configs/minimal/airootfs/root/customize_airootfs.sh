@@ -33,7 +33,7 @@ fi
 
 #start up systemctl processes
 #systemctl enable multi-user.target pacman-init.service choose-mirror.service
-systemctl disable sshd dhcpcd
+systemctl disable sshd
 systemctl enable pacman-init.service choose-mirror.service
 systemctl set-default multi-user.target
 
