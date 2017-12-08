@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+DATE=$(date -I'date' | sed 's/-/./g;s/07$/01/g')
+VER="archlinux-${DATE}"
+ISO="${VER}-x86_64.iso"
+URL="http://mirror.grig.io/archlinux/iso/${DATE}/${ISO}"
+
+ISOPATH="/tmp/$ISO"
+MOUNTPT="/mnt/$VER"
+WORKDIR="/tmp/$VER"
+
+
+printf "Downloading the %s ISO signature for Arch Linux...\n" "$DATE"
+curl "$URL.sig" -o "$ISOPATH.sig"
+if [[ ! -e "$ISOPATH" ]]; then
+    printf "Downloading the %s ISO release for Arch Linux...\n" "$DATE"
+    curl "$URL" -o "$ISOPATH"
+fi
+printf "Verifying signature of ISO...\n"
+pacman-key -v "$ISOPATH.sig" || exit 1
+[[ ! -e "$MOUNTPT" ]] && sudo mkdir "$MOUNTPT"
+sudo mount -t iso9660 -o loop "$ISOPATH" "$MOUNTPT"
+[[ ! -e "$WORKDIR" ]] && mkdir "$WORKDIR"
+cp -a "$MOUNTPT"/* "$WORKDIR"
+cd "$WORKDIR/arch/x86_64" || exit 1
+unsquashfs -d /tmp airootfs.sfs && sync
+[[ ! -e "/tmp/squashfs-root/etc/initcpio" ]] && printf "Hooks successfully extracted from %s to '/tmp/hooks'\n" "$ISOPATH"
+exit 0
+# vim:se ts=4 sw=4 et:
