@@ -8,6 +8,6 @@ Dependencies
 
 Environment Preparation
 -----------------------
-```python
+```shell
 $ cp archiso/mkstrikeiso ~/bin/
 ```
