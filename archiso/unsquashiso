@@ -7,6 +7,7 @@ URL="http://mirror.grig.io/archlinux/iso/${DATE}/${ISO}"
 ISOPATH="/tmp/$ISO"
 MOUNTPT="/mnt/$VER"
 WORKDIR="/tmp/$VER"
+SQUASHO="/tmp/squashfs-root"
 
 
 printf "Downloading the %s ISO signature for Arch Linux...\n" "$DATE"
@@ -16,13 +17,14 @@ if [[ ! -e "$ISOPATH" ]]; then
     curl "$URL" -o "$ISOPATH"
 fi
 printf "Verifying signature of ISO...\n"
-pacman-key -v "$ISOPATH.sig" || exit 1
+pacman-key -v "$ISOPATH.sig" || gpg --keyserver-options auto-key-retrieve --verify "$ISOPATH.sig" || exit 1
 [[ ! -e "$MOUNTPT" ]] && sudo mkdir "$MOUNTPT"
 sudo mount -t iso9660 -o loop "$ISOPATH" "$MOUNTPT"
 [[ ! -e "$WORKDIR" ]] && mkdir "$WORKDIR"
 cp -a "$MOUNTPT"/* "$WORKDIR"
 cd "$WORKDIR/arch/x86_64" || exit 1
-unsquashfs -d /tmp airootfs.sfs && sync
-[[ ! -e "/tmp/squashfs-root/etc/initcpio" ]] && printf "Hooks successfully extracted from %s to '/tmp/hooks'\n" "$ISOPATH"
+[[ -e "$SQUASHO" ]] && sudo rm -rvf $SQUASHO
+unsquashfs -d $SQUASHO airootfs.sfs && sync
+[[ -e "$SQUASHO" ]] && printf "Successfully unsquashed %s to '%s'\n" "$ISOPATH" "$SQUASHO"
 exit 0
 # vim:se ts=4 sw=4 et:
