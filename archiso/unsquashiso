@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-DATE=$(date -I'date' | sed 's/-/./g;s/07$/01/g')
+DATE=$(date -I'date' | sed 's/-/./g;s/[0-9][0-9]$/01/g')
 VER="archlinux-${DATE}"
 ISO="${VER}-x86_64.iso"
 URL="http://mirror.grig.io/archlinux/iso/${DATE}/${ISO}"
