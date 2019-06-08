@@ -2,14 +2,14 @@
 DATE=$(date -I'date' | sed 's/-/./g;s/[0-9][0-9]$/01/g')
 VER="archlinux-${DATE}"
 ISO="${VER}-x86_64.iso"
-URL="http://mirror.grig.io/archlinux/iso/${DATE}/${ISO}"
+URL="http://mirrors.acm.wpi.edu/archlinux/iso/${DATE}/${ISO}"
 
 ISOPATH="/tmp/$ISO"
 MOUNTPT="/mnt/$VER"
 WORKDIR="/tmp/$VER"
 SQUASHO="/tmp/squashfs-root"
 
-
+[[ -z "$(lsmod | grep loop)" ]] && printf "Could not find kernel module loop. Try rebooting after a update." && exit 1
 printf "Downloading the %s ISO signature for Arch Linux...\n" "$DATE"
 curl "$URL.sig" -o "$ISOPATH.sig"
 if [[ ! -e "$ISOPATH" ]]; then
@@ -19,6 +19,8 @@ fi
 printf "Verifying signature of ISO...\n"
 pacman-key -v "$ISOPATH.sig" || gpg --keyserver-options auto-key-retrieve --verify "$ISOPATH.sig" || exit 1
 [[ ! -e "$MOUNTPT" ]] && sudo mkdir "$MOUNTPT"
+
+printf "Mounting ISO to with cmd: %s %s %s\n" 'sudo mount -t iso9660 -o loop' "$ISOPATH" "$MOUNTPT"
 sudo mount -t iso9660 -o loop "$ISOPATH" "$MOUNTPT"
 [[ ! -e "$WORKDIR" ]] && mkdir "$WORKDIR"
 cp -a "$MOUNTPT"/* "$WORKDIR"

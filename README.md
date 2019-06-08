@@ -9,7 +9,10 @@ Dependencies
 
 Environment Preparation
 -----------------------
+Privileges are inexact here. Root may be required for mounting or copying.
 ```shell
+$ git clone git@github.com:ArchStrike/archstrike-iso.git
+$ cd archstrike-iso
 $ cp archiso/{mkstrikeiso,unsquashiso} ~/bin
 $ unsquashiso
 $ cp /tmp/squashfs-root/etc/initcpio/hooks/* /usr/lib/initcpio/hooks/
