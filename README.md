@@ -6,6 +6,7 @@ Dependencies
 ------------
  * `qemu`
  * `squashfs-tools`
+ * `arch-install-scripts`
 
 Environment Preparation
 -----------------------
