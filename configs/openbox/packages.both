@@ -33,7 +33,7 @@ tmux
 wgetpaste
 
 # ArchStrike
-archstrike
+archstrike 
 archstrike-installer
 archstrike-mirrorlist
 
@@ -41,6 +41,7 @@ archstrike-mirrorlist
 btrfs-progs
 clonezilla
 crda
+cryptsetup
 ddrescue
 dhclient
 dialog
@@ -87,59 +88,35 @@ git
 vim
 python
 python2
-scite
 
 # Xorg
 ati-dri
 intel-dri
 nouveau-dri
 xf86-input-evdev
-xf86-input-joystick
 xf86-input-keyboard
 xf86-input-mouse
 xf86-input-libinput
 xf86-input-void
-xf86-video-apm
-xf86-video-ark
 xf86-video-ati
-xf86-video-chips
 xf86-video-dummy
 xf86-video-fbdev
-xf86-video-glint
-xf86-video-i128
-xf86-video-i740
 xf86-video-intel
-xf86-video-mach64
-xf86-video-neomagic
 xf86-video-nouveau
-xf86-video-nv
 xf86-video-openchrome
-xf86-video-r128
-xf86-video-rendition
-xf86-video-s3
-xf86-video-s3virge
-xf86-video-savage
-xf86-video-siliconmotion
-xf86-video-sis
 xf86-video-sisusb
-xf86-video-tdfx
-xf86-video-trident
-xf86-video-tseng
 xf86-video-vesa
 xf86-video-vmware
 xf86-video-voodoo
 xorg
 xorg-drivers
 xorg-server
-xorg-server-utils
-xorg-utils
 xorg-xbacklight
 xorg-xdm
 xorg-xinit
 xorg-xkill
 
 # Vmware
-libview
 open-vm-tools
 svga-dri
 xf86-input-vmmouse
@@ -160,7 +137,6 @@ volumeicon
 
 # Internet
 # chromium  removing for now might add back later
-dwb
 elinks
 firefox
 hexchat
@@ -172,7 +148,6 @@ transmission-gtk
 # Media plugins
 cmus
 # flashplugin removing for now might add back later
-gstreamer0.10-plugins
 mpd
 mpv
 
@@ -184,23 +159,19 @@ parcellite
 conky
 dmenu
 feh
-cherrytree
 lxappearance
 lxinput
-numix-themes
 obconf
 obkey
 oblogout
 obmenu
 obmenu-generator
 openbox
-openbox-themes
 perl-data-dump
 perl-file-mimeinfo
 perl-linux-desktopfiles
 scrot
 slock
-spacefm
 surfraw
 task
 tint2
@@ -237,16 +208,17 @@ rsync
 sdparm
 sg3_utils
 smartmontools
-speedtouch
+ppp
 tinc
 vpnc
 wget
 wicd-gtk
 wireless_tools
-wpa_actiond
+netctl
 wvdial
 xl2tpd
-zd1211-firmware
+dkms
+linux-headers
 
 # Archive Tools
 #arj
@@ -282,3 +254,4 @@ ttf-ubuntu-font-family
 xorg-fonts-100dpi
 xorg-fonts-75dpi
 xorg-fonts-type1
+gcc-libs
