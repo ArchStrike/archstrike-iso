@@ -55,7 +55,7 @@ rsync
 sdparm
 sg3_utils
 smartmontools
-speedtouch
+ppp
 tcpdump
 testdisk
 usb_modeswitch
@@ -63,7 +63,8 @@ vim-minimal
 vpnc
 wget
 wireless_tools
-wpa_actiond
+netctl
 wvdial
 xl2tpd
-zd1211-firmware
+dkms
+linux-headers

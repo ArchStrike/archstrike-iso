@@ -12,6 +12,8 @@ gpg_key=
 
 arch=$(uname -m)
 verbose=""
+support_32_bit=false
+architectures=( "x86_64" )
 script_path=$(readlink -f ${0%/*})
 
 _usage ()
@@ -31,6 +33,7 @@ _usage ()
     echo "                        Default: ${work_dir}"
     echo "    -o <out_dir>       Set the output directory"
     echo "                        Default: ${out_dir}"
+    echo "    -3                 Create dual iso for 32-bit and 64-bit"
     echo "    -v                 Enable verbose output"
     echo "    -h                 This help message"
     exit ${1}
@@ -213,7 +216,12 @@ make_prepare() {
 
 # Build ISO
 make_iso() {
-    mkstrikeiso ${verbose} -w "${work_dir}" -D "${install_dir}" -L "${iso_label}" -o "${out_dir}" iso "${iso_name}-${iso_version}-dual.iso"
+    [[ $support_32_bit == true ]] && {
+        iso_filename="${iso_name}-${iso_version}-dual.iso"
+    } || {
+        iso_filename="${iso_name}-${iso_version}.iso"
+    }
+    mkstrikeiso ${verbose} -w "${work_dir}" -D "${install_dir}" -L "${iso_label}" -o "${out_dir}" iso "${iso_filename}"
 }
 
 if [[ ${EUID} -ne 0 ]]; then
@@ -226,7 +234,7 @@ if [[ ${arch} != x86_64 ]]; then
     _usage 1
 fi
 
-while getopts 'N:V:L:D:w:o:g:vh' arg; do
+while getopts 'N:V:L:D:w:o:g:vh:3' arg; do
     case "${arg}" in
         N) iso_name="${OPTARG}" ;;
         V) iso_version="${OPTARG}" ;;
@@ -237,6 +245,7 @@ while getopts 'N:V:L:D:w:o:g:vh' arg; do
         g) gpg_key="${OPTARG}" ;;
         v) verbose="-v" ;;
         h) _usage 0 ;;
+        3) support_32_bit=true ;;
         *)
            echo "Invalid argument '${arg}'"
            _usage 1
@@ -245,23 +254,24 @@ while getopts 'N:V:L:D:w:o:g:vh' arg; do
 done
 
 mkdir -p ${work_dir}
+[[ $support_32_bit == true ]] && architectures+=( "i686" )
 
 run_once make_pacman_conf
 
 # Do all stuff for each airootfs
-for arch in i686 x86_64; do
+for arch in "${architectures[@]}"; do
     run_once make_basefs
     run_once make_packages
 done
 
 run_once make_packages_efi
 
-for arch in i686 x86_64; do
+for arch in "${architectures[@]}"; do
     run_once make_setup_mkinitcpio
     run_once make_customize_airootfs
 done
 
-for arch in i686 x86_64; do
+for arch in "${architectures[@]}"; do
     run_once make_boot
 done
 
@@ -272,7 +282,7 @@ run_once make_isolinux
 run_once make_efi
 run_once make_efiboot
 
-for arch in i686 x86_64; do
+for arch in "${architectures[@]}"; do
     run_once make_prepare
 done
 

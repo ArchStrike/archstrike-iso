@@ -11,8 +11,10 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
 cp -aT /etc/skel/ /root/
 
-chmod 750 /etc/sudoers.d
-chmod 440 /etc/sudoers.d/g_wheel
+[[ -e "/etc/sudoers.d" ]] && {
+    chmod 750 /etc/sudoers.d
+    chmod 440 /etc/sudoers.d/g_wheel
+}
 
 sed -i "s/#Server/Server/g" /etc/pacman.d/mirrorlist
 sed -i 's/#\(Storage=\)auto/\1volatile/' /etc/systemd/journald.conf
@@ -39,6 +41,8 @@ systemctl set-default multi-user.target
 # Pacstrap/Pacman bug where hooks are not run inside the chroot
 /usr/bin/update-ca-trust
 
+# Build kernel modules that are handled by dkms so we can delete kernel headers to save space
+dkms autoinstall
 #make sure we dont keep any pacman pkgs in the cache
 pacman -Scc --noconfirm
 
@@ -46,12 +50,10 @@ pacman -Scc --noconfirm
 rm -rf /usr/share/{doc,gtk-doc,info,gtk-2.0,gtk-3.0} || true
 rm -rf /usr/share/{man,gnome,X11} || true
 
-# Build kernel modules that are handled by dkms so we can delete kernel headers to save space
-dkms autoinstall
 
 # Fix sudoers
 chown -R root:root /etc/
-chmod 660 /etc/sudoers
+[[ -e "/etc/sudoers" ]] && chmod 660 /etc/sudoers
 
 # Black list floppy
 printf '%s\n' 'blacklist floppy' > /etc/modprobe.d/nofloppy.conf
