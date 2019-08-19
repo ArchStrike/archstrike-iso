@@ -164,7 +164,6 @@ lxinput
 obconf
 obkey
 oblogout
-obmenu
 obmenu-generator
 openbox
 perl-data-dump
@@ -244,7 +243,6 @@ terminus-font
 ttf-bitstream-vera
 ttf-dejavu
 ttf-droid
-ttf-freefont
 ttf-hack
 ttf-inconsolata
 ttf-indic-otf

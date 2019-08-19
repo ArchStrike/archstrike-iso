@@ -50,7 +50,6 @@ rsync
 sdparm
 sg3_utils
 smartmontools
-speedtouch
 tcpdump
 testdisk
 usb_modeswitch
@@ -58,11 +57,9 @@ vim-minimal
 vpnc
 wget
 wireless_tools
-wpa_actiond
 wpa_supplicant
 wvdial
 xl2tpd
-zd1211-firmware
 zsh
 
 #ArchStrike
