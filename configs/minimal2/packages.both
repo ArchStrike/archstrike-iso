@@ -11,6 +11,7 @@ crda
 ddrescue
 dhclient
 dialog
+dkms
 dmraid
 dnsmasq
 dnsutils
