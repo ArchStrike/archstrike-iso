@@ -9,6 +9,7 @@ Dependencies
  * `arch-install-scripts`
  * `lynx`
  * `libisoburn`
+ * `dosfstools`
 
 Environment Preparation
 -----------------------
