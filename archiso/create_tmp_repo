@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+PKG_DB_PATH="work/repository"
+PKG=obkey
+PKG=cryptsetup
+UPSTREAM=https://aur.archlinux.org/obkey.git 
+UPSTREAM=https://gitlab.com/cryptsetup/cryptsetup.git
+mkdir -pv "$PKG_DB_PATH"
+[[ -e /tmp/$PKG ]] && rm -rf /tmp/$PKG
+git clone $UPSTREAM /tmp/$PKG
+( cd /tmp/$PKG && makepkg -s )
+sudo repo-add $PKG_DB_PATH/work-repository.db.tar.gz /tmp/$PKG/$PKG*.pkg.tar.xz
