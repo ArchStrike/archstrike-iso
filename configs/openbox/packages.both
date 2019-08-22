@@ -93,21 +93,6 @@ python2
 ati-dri
 intel-dri
 nouveau-dri
-xf86-input-evdev
-xf86-input-keyboard
-xf86-input-mouse
-xf86-input-libinput
-xf86-input-void
-xf86-video-ati
-xf86-video-dummy
-xf86-video-fbdev
-xf86-video-intel
-xf86-video-nouveau
-xf86-video-openchrome
-xf86-video-sisusb
-xf86-video-vesa
-xf86-video-vmware
-xf86-video-voodoo
 xorg
 xorg-drivers
 xorg-server
@@ -119,8 +104,6 @@ xorg-xkill
 # Vmware
 open-vm-tools
 svga-dri
-xf86-input-vmmouse
-xf86-video-vmware
 
 # VirtualBox
 virtualbox-guest-modules-arch
