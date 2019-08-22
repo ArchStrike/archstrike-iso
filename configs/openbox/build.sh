@@ -9,6 +9,7 @@ iso_version=openbox-$(date +%Y.%m.%d)
 install_dir=arch
 arch=$(uname -m)
 work_dir=work
+repo_dir="$work_dir/repository"
 out_dir=out
 verbose=""
 pacman_conf=${work_dir}/pacman.conf
@@ -55,6 +56,12 @@ make_pacman_conf() {
     else
         sed -r "s|^#?\\s*CacheDir.+|CacheDir = $(echo -n ${_cache_dirs[@]})|g" ${script_path}/pacman.i686.conf > ${pacman_conf}
     fi
+    cat >> "${pacman_conf}" << EOF
+[work-repository]
+SigLevel = Optional TrustAll
+Server = file://${PWD/ /\\ }/$repo_dir
+
+EOF
     # sed -r "s|^#?\\s*CacheDir.+|CacheDir = $(echo -n ${_cache_dirs[@]})|g" ${script_path}/pacman.conf > ${pacman_conf}
 }
 
@@ -65,13 +72,24 @@ make_basefs() {
 }
 
 # Additional packages (airootfs)
+_remove_pkg() {
+    local pkgname remove_cmd
+    pkgname="$1"
+    remove_cmd="pacman -Qi $pkgname &> /dev/null && pacman -Rdd --noconfirm $pkgname || "
+    remove_cmd+="printf 'Skipping pacman removal of %s (not installed)' $pkgname"
+    setarch ${arch} mkstrikeiso ${verbose} \
+                -w "${work_dir}/${arch}" \
+                -C "${pacman_conf}" \
+                -D "${install_dir}" \
+                -r "${remove_cmd}" run
+
+}
 make_packages() {
     if [[ "$arch" = 'x86_64' ]]; then
         # remove gcc-libs to avoid conflict with gcc-libs-multilib
-        setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -r "pacman -Rdd --noconfirm gcc-libs" run
+        _remove_pkg "gcc-libs"
     fi
-
-    setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -r "pacman -Rdd --noconfirm cryptsetup" run
+    _remove_pkg "cryptsetup"
     setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -p "$(grep -h -v '^#' ${script_path}/packages.{both,${arch}})" install
 }
 
@@ -194,7 +212,7 @@ make_efi() {
 # Prepare efiboot.img::/EFI for "El Torito" EFI boot mode
 make_efiboot() {
     mkdir -p ${work_dir}/iso/EFI/archiso
-    truncate -s 40M ${work_dir}/iso/EFI/archiso/efiboot.img
+    truncate -s 64M ${work_dir}/iso/EFI/archiso/efiboot.img
     mkfs.fat -n ARCHISO_EFI ${work_dir}/iso/EFI/archiso/efiboot.img
 
     mkdir -p ${work_dir}/efiboot
