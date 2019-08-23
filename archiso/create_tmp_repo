@@ -7,3 +7,4 @@ mkdir -pv "$PKG_DB_PATH"
 git clone $UPSTREAM /tmp/$PKG
 ( cd /tmp/$PKG && makepkg -s )
 sudo repo-add $PKG_DB_PATH/work-repository.db.tar.gz /tmp/$PKG/$PKG*.pkg.tar.xz
+cp /tmp/$PKG/$PKG*.pkg.tar.xz $PKG_DB_PATH 
