@@ -56,12 +56,6 @@ make_pacman_conf() {
     else
         sed -r "s|^#?\\s*CacheDir.+|CacheDir = $(echo -n ${_cache_dirs[@]})|g" ${script_path}/pacman.i686.conf > ${pacman_conf}
     fi
-    cat >> "${pacman_conf}" << EOF
-[work-repository]
-SigLevel = Optional TrustAll
-Server = file://${PWD/ /\\ }/$repo_dir
-
-EOF
     # sed -r "s|^#?\\s*CacheDir.+|CacheDir = $(echo -n ${_cache_dirs[@]})|g" ${script_path}/pacman.conf > ${pacman_conf}
 }
 

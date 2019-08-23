@@ -1,4 +1,17 @@
 #!/usr/bin/env bash
+# Automates the creation of a local repository for debugging pkg issues when building
+#
+# The local repository will have to be specified like so for build.sh to use it
+# --------------------------------------
+# work/pacman.conf
+# --------------------------------------
+# [work-repository]
+# SigLevel = Optional TrustAll
+# Server = file://${PWD/ /\\ }/$repo_dir
+# EOF
+# 
+# Make sure to place for archstrike to give it precidence
+#
 PKG_DB_PATH="work/repository"
 PKG=obkey
 UPSTREAM=https://aur.archlinux.org/obkey.git 
