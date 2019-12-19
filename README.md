@@ -10,6 +10,7 @@ Dependencies
  * `lynx`
  * `libisoburn`
  * `dosfstools`
+ * `gcc-libs`
 
 Environment Preparation
 -----------------------
