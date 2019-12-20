@@ -1,14 +1,16 @@
 # Installation
 arch-install-scripts
 archstrike-keyring
+mkinitcpio
+linux
+linux-atm
+linux-headers
 dialog
 dmraid
 grub
 haveged
 hwdetect
 hwinfo
-linux-atm
-linux-headers
 ntp
 reflector
 squashfs-tools
@@ -41,7 +43,6 @@ aespipe
 afflib
 aiengine
 air
-airgeddon-git
 airgraph-ng-svn
 airoscript-git
 allthevhosts
@@ -67,7 +68,6 @@ batman-alfred
 bbqsql-git
 bed
 beef-git
-beeswarm
 beleth-git
 bfbtester
 bindead-git
@@ -76,12 +76,9 @@ binwally-git
 bittwist
 bkhive
 bletchley
-blindelephant-svn
 blindsql
 blueprint
-blueranger
 bluesnarfer
-bluto
 bmap-tools
 box-js
 braa
@@ -95,7 +92,6 @@ bss
 bt2-git
 bt_audit
 buildhosts-git
-bulk-extractor
 burst-git
 buttinsky-git
 bvi
@@ -121,7 +117,6 @@ cisco-router-config
 cisco-torch
 cjdns-git
 cjdnsify-git
-cjdscript
 climber-git
 cloakify-git
 clusterd-git
@@ -129,7 +124,6 @@ cmospwd
 cms-explorer
 commix-git
 complemento
-cookie-cadger
 cookiejar
 cpublaster
 cr3dov3r-git
@@ -148,7 +142,6 @@ cryptohazemultiforcer
 cryptonark
 csrft-git
 csrftester
-ctunnel
 cupp-git
 cymothoa
 damm-git
@@ -163,8 +156,6 @@ deblaze-git
 deen
 delldrac
 delta-git
-depdep
-derrick
 detectsniffer-git
 device-pharmer-git
 dex2jar
@@ -207,7 +198,6 @@ elettra
 elettra-gui
 elfparser
 elidecode-git
-empire
 ent
 enum4linux
 enumiax
@@ -229,7 +219,6 @@ firecat
 firesql
 firewalk
 firmwalker-git
-firmware-mod-kit
 firstexecution-git
 flare
 flashlight
@@ -243,17 +232,14 @@ ftpmap
 funkload
 fusil
 fuzzap-git
-fuzzball2
 fuzzdb-git
 fuzzdiff
 g711conversions
 g72x
-galleta
 gcat-git
 gef-git
 geoipgen
 getsids
-gggooglescan
 ghost.py
 ghostpdl
 ghostpop3
@@ -269,7 +255,6 @@ googlesub
 gooscan
 gophish
 gpshell
-grepforrfi
 guymager
 gwt-toolset-git
 hack_library
@@ -314,12 +299,10 @@ inception-git
 indxparse-git
 inetsim
 interlock-git
-interrogate
 intersect-git
 intrace-git
 inundator
 inviteflood
-iosforensic
 ip2clue
 ipaudit
 ipdecap
@@ -372,7 +355,6 @@ mail-crawl
 make-pdf
 malheur
 maltego
-maltrieve-git
 maskprocessor
 massdns-git
 matahari
@@ -431,7 +413,6 @@ nishang
 nkiller2
 nmbscan
 nomorexor-git
-novnc-git
 nsec3walker
 nsoq
 o-saft-git
@@ -468,8 +449,6 @@ pcredz
 pdf-parser
 pdfbook-analyzer
 pdfid
-pdgmail
-peach-git
 peepdf
 pentbox
 pentmenu
@@ -478,7 +457,6 @@ pev
 phoss
 phrasendrescher
 pip3line
-pipal
 pkt2flow
 plasma-git
 plecost
@@ -527,7 +505,6 @@ quicksand_lite
 rainbowcrack
 rarcrack
 ratproxy
-rawr-git
 rcracki-mt
 recon-ng-git
 recoverjpeg
@@ -542,7 +519,6 @@ rfidtool
 ridenum-git
 ropeme
 routersploit-git
-rr
 rsakeyfind
 rsmangler
 rspet-git
@@ -551,7 +527,6 @@ ruler-git
 safecopy
 sagan
 salsapipe-git
-samdump2
 sbd
 scalpel
 scannerl-git
@@ -624,7 +599,6 @@ swfintruder
 synscan
 t50
 tbear
-tcpextract
 tcpick
 tcptraceroute
 tcpwatch
@@ -672,10 +646,7 @@ wcc-git
 webacoo
 webpwn3r-git
 webrute
-webscarab
-websockify
 weevely
-wemo-git
 wepbuster
 wfuzz
 whatweb-git
@@ -683,7 +654,6 @@ wifi-honey
 wificurse
 wifijammer-git
 wifiphisher-git
-wifitap
 wifite-git
 wig-git
 wikigen
@@ -701,7 +671,6 @@ xorstrings
 xortool
 xprobe2
 xspy
-xsser-git
 xssless-git
 xsspy-git
 xsss
@@ -721,7 +690,6 @@ spike
 #
 #
 archstrike-installer
-archstrike-mirrorlist
 
 # Filesystems
 btrfs-progs
@@ -772,6 +740,7 @@ zsh
 base-devel
 git
 vim
+nano
 python
 python2
 
@@ -859,6 +828,7 @@ lxterminal
 b43-fwcutter
 crda
 dhclient
+dhcpcd
 dnsmasq
 dnsutils
 ethtool
