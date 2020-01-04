@@ -60,7 +60,6 @@ automator-git
 autopsy
 autosploit-git
 azazel-git
-backdoor-factory-git
 backdoorme-git
 backfuzz-git
 bamfdetect
@@ -104,7 +103,6 @@ cdpsnarf
 centry-git
 cewl
 cfr
-changeme
 chaosreader
 checkiban
 chipsec
@@ -128,7 +126,6 @@ cookiejar
 cpublaster
 cr3dov3r-git
 crackle-git
-crackmapexec
 crackserver-git
 creak-git
 create_ap-git
@@ -197,14 +194,12 @@ eindeutig
 elettra
 elettra-gui
 elfparser
-elidecode-git
 ent
 enum4linux
 enumiax
 erase-registrations
 evilgrade-git
 exabgp
-exitmap
 fakeap
 fakedns-git
 fakemail
@@ -263,7 +258,6 @@ haka
 hash-identifier
 hashdb
 hashdeep
-hasher-git
 hashid-git
 hashpump-git
 hashtag-git
@@ -420,7 +414,6 @@ od1n-git
 ohrwurm-git
 onesixtyone
 onetwopunch-git
-onioff
 onionscan-git
 openstego
 orbited
@@ -430,7 +423,6 @@ outguess
 owasp-zsc-git
 pacemaker-git
 pack
-packerid-git
 packetsender
 packit
 pacumen
@@ -482,8 +474,6 @@ pwatch
 pwdump
 pwnat-git
 pwndbg-git
-pwntools
-pyew-git
 pyminifakedns
 pytbull
 python-amoco
@@ -532,7 +522,6 @@ scalpel
 scannerl-git
 scansploit-git
 scanssh
-scout2-git
 scrape-dns-git
 scrounge-ntfs
 sctpscan-git
@@ -594,7 +583,6 @@ stomper
 stompy
 sublist3r-git
 sucrack
-suricata
 swfintruder
 synscan
 t50
