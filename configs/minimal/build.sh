@@ -66,10 +66,10 @@ make_basefs() {
 
 # Additional packages (airootfs)
 make_packages() {
-    if [[ "$arch" = 'x86_64' ]]; then
+    #if [[ "$arch" = 'x86_64' ]]; then
         # remove gcc-libs to avoid conflict with gcc-libs-multilib
-        setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -r "pacman -Rdd --noconfirm gcc-libs" run
-    fi
+    #    setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -r "pacman -Rdd --noconfirm gcc-libs" run
+    #fi
 
     setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -p "$(grep -h -v '^#' ${script_path}/packages.{both,${arch}})" install
 }

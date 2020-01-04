@@ -66,24 +66,12 @@ make_basefs() {
 }
 
 # Additional packages (airootfs)
-_remove_pkg() {
-    local pkgname remove_cmd
-    pkgname="$1"
-    remove_cmd="pacman -Qi $pkgname &> /dev/null && pacman -Rdd --noconfirm $pkgname || "
-    remove_cmd+="printf 'Skipping pacman removal of %s (not installed)' $pkgname"
-    setarch ${arch} mkstrikeiso ${verbose} \
-                -w "${work_dir}/${arch}" \
-                -C "${pacman_conf}" \
-                -D "${install_dir}" \
-                -r "${remove_cmd}" run
-
-}
 make_packages() {
-    if [[ "$arch" = 'x86_64' ]]; then
+    #if [[ "$arch" = 'x86_64' ]]; then
         # remove gcc-libs to avoid conflict with gcc-libs-multilib
-        _remove_pkg "gcc-libs"
-    fi
-    _remove_pkg "cryptsetup"
+    #    setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -r "pacman -Rdd --noconfirm gcc-libs" run
+    #fi
+
     setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -p "$(grep -h -v '^#' ${script_path}/packages.{both,${arch}})" install
 }
 
