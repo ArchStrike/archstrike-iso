@@ -44,6 +44,7 @@ _msg_error() {
 
 _chroot_init() {
     mkdir -p ${work_dir}/airootfs
+    mount --bind ${work_dir}/airootfs ${work_dir}/airootfs
     _pacman "base syslinux"
 }
 
