@@ -77,6 +77,8 @@ def irresolvable_depends(repos, pkgs):
 
 
 def irresolvable_depends_from_file(repos, filename):
+    if filename is None:
+        return
     for line in open(filename):
         line = line.strip()
         if line.startswith('#') or len(line) == 0:
