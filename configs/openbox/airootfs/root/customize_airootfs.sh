@@ -49,7 +49,7 @@ fi
 #start up systemctl processes
 #systemctl enable multi-user.target pacman-init.service choose-mirror.service
 systemctl disable sshd dhcpcd
-systemctl enable wicd
+systemctl enable NetworkManager.service
 systemctl enable pacman-init.service choose-mirror.service
 systemctl set-default multi-user.target
 

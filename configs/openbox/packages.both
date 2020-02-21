@@ -35,6 +35,7 @@ tmux
 wgetpaste
 
 # ArchStrike
+
 0trace
 3proxy
 acccheck
@@ -43,14 +44,18 @@ aespipe
 afflib
 aiengine
 air
-airgraph-ng-svn
+airgeddon-git
 airoscript-git
 allthevhosts
 amap
+androguard
 argtable
 argus
 argus-clients
 armitage
+arpalert
+arpoison
+arpwner-git
 artillery-git
 artlas-git
 asleap
@@ -60,6 +65,7 @@ automator-git
 autopsy
 autosploit-git
 azazel-git
+backdoor-factory-git
 backdoorme-git
 backfuzz-git
 bamfdetect
@@ -91,9 +97,11 @@ bss
 bt2-git
 bt_audit
 buildhosts-git
+burpsuite
 burst-git
 buttinsky-git
 bvi
+callerpy-git
 canari
 cangibrina-git
 cansina-git
@@ -103,6 +111,7 @@ cdpsnarf
 centry-git
 cewl
 cfr
+changeme
 chaosreader
 checkiban
 chipsec
@@ -126,6 +135,7 @@ cookiejar
 cpublaster
 cr3dov3r-git
 crackle-git
+crackmapexec
 crackserver-git
 creak-git
 create_ap-git
@@ -150,9 +160,9 @@ dbpwaudit
 dc3dd
 ddrutility
 deblaze-git
-deen
 delldrac
 delta-git
+derrick
 detectsniffer-git
 device-pharmer-git
 dex2jar
@@ -160,6 +170,7 @@ dff-scanner
 dhcdrop
 dhcpig-git
 dirb
+dirble
 dirbuster
 dirsearch
 dislocker
@@ -194,26 +205,29 @@ eindeutig
 elettra
 elettra-gui
 elfparser
+elidecode-git
 ent
 enum4linux
 enumiax
 erase-registrations
 evilgrade-git
 exabgp
+eyewitness-git
 fakeap
 fakedns-git
 fakemail
 fakenetbios-git
 fang
 fatback
-fbht-git
 fern-wifi-cracker-git
+ffuf
 fierce-git
 fiked
 firecat
 firesql
 firewalk
 firmwalker-git
+firmware-mod-kit-git
 firstexecution-git
 flare
 flashlight
@@ -249,11 +263,12 @@ google-explorer-git
 googlesub
 gooscan
 gophish
+gowitness-git
 gpshell
+grepforrfi
 guymager
 gwt-toolset-git
 hack_library
-hackersh
 haka
 hash-identifier
 hashdb
@@ -293,6 +308,7 @@ inception-git
 indxparse-git
 inetsim
 interlock-git
+interrogate
 intersect-git
 intrace-git
 inundator
@@ -304,6 +320,7 @@ iphoneanalyzer
 ipscan
 ipv6toolkit
 ircsnapshot-git
+irpas
 javasnoop
 jboss-autopwn-git
 jbrofuzz
@@ -356,6 +373,7 @@ matroschka-git
 mbox-git
 mboxgrep
 mdcrack
+mdk4
 meltdown-git
 memdump
 memfetch
@@ -365,6 +383,7 @@ metasploit-framework
 metasploit-payload-creator
 metasploitavevasion-git
 mfcuk
+mfoc
 mfterm
 mibble
 middler
@@ -414,8 +433,10 @@ od1n-git
 ohrwurm-git
 onesixtyone
 onetwopunch-git
+onioff
 onionscan-git
 openstego
+operative-framework
 orbited
 origami
 osueta-git
@@ -423,9 +444,9 @@ outguess
 owasp-zsc-git
 pacemaker-git
 pack
+packerid-git
 packetsender
 packit
-pacumen
 paketto
 panoptic-git
 paros
@@ -474,6 +495,8 @@ pwatch
 pwdump
 pwnat-git
 pwndbg-git
+pwntools
+pyew-git
 pyminifakedns
 pytbull
 python-amoco
@@ -502,13 +525,16 @@ redfang
 redirectpoison
 redpoint-git
 regeorg-git
+reglookup
 responder
 rfcat
 rfidiot-git
 rfidtool
 ridenum-git
+rifiuti2
 ropeme
 routersploit-git
+rr-git
 rsakeyfind
 rsmangler
 rspet-git
@@ -537,8 +563,10 @@ shard
 shellme-git
 shellnoob
 shellsploit
+shellter
 shocker-git
 sidguesser
+silk
 simple-ducky-git
 simple-email-spoofer-git
 sipp
@@ -554,9 +582,11 @@ smtpscan
 snarf-git
 sniffles
 snmpcheck
+snmpenum
 snmpscan
 snort
 snow
+spectools
 spiped
 spipscan-git
 spooftooph
@@ -583,8 +613,10 @@ stomper
 stompy
 sublist3r-git
 sucrack
+suricata
 swfintruder
 synscan
+sysinternals-suite
 t50
 tbear
 tcpick
@@ -592,7 +624,9 @@ tcptraceroute
 tcpwatch
 tcpxtract
 thc-pptp-bruter
+thcsmartbrute
 theharvester-git
+thezoo-git
 tiger
 tilt-git
 tlssled
@@ -606,13 +640,18 @@ tplmap
 triad-decompiler
 trid
 trinity
+truecrack-git
+tuxcut
+twint
 twittor-git
+twofi
 uatester
 ubertooth
 udis86
 udptunnel
+ufo-wardriving
 ufonet
-umit
+umap-git
 unicornscan
 unix-privesc-check
 upnpscan
@@ -624,6 +663,7 @@ vbscan-git
 vega
 vfeed-git
 videosnarf
+vmcloak
 vncrack
 voiphopper
 voipong
@@ -642,6 +682,7 @@ wifi-honey
 wificurse
 wifijammer-git
 wifiphisher-git
+wifitap-git
 wifite-git
 wig-git
 wikigen
@@ -653,12 +694,19 @@ wmat
 wol-e
 wordpot-git
 wpbf-git
+wsfuzzer
+wuzz
+xcat
+xcavator-git
 xmount
 xorsearch
 xorstrings
 xortool
 xprobe2
 xspy
+xss-callback-git
+xsser
+xssf
 xssless-git
 xsspy-git
 xsss
@@ -672,10 +720,7 @@ zgrab
 zizzania
 zulu
 zzuf
-mfoc
-spike
 
-#
 #
 archstrike-installer
 
@@ -689,7 +734,6 @@ dhclient
 dialog
 dmraid
 dnsmasq
-dnsutils
 dosfstools
 elinks
 ethtool
@@ -705,7 +749,6 @@ mtools
 nfs-utils
 nilfs-utils
 ntfs-3g
-ntfsprogs
 parted
 samba
 smartmontools
@@ -733,20 +776,22 @@ python
 python2
 
 # Xorg
-ati-dri
-intel-dri
-nouveau-dri
+xf86-video-ati
+xf86-video-intel
+xf86-video-nouveau
 xorg
 xorg-drivers
 xorg-server
-xorg-xbacklight
 xorg-xdm
+xorg-xbacklight
 xorg-xinit
 xorg-xkill
 
 # Vmware
 open-vm-tools
-svga-dri
+xf86-input-vmmouse
+xf86-video-vmware
+mesa
 
 # VirtualBox
 virtualbox-guest-modules-arch
@@ -788,7 +833,6 @@ lxappearance
 lxinput
 obconf
 obkey
-oblogout
 obmenu-generator
 openbox
 perl-data-dump
@@ -818,7 +862,6 @@ crda
 dhclient
 dhcpcd
 dnsmasq
-dnsutils
 ethtool
 ipw2100-fw
 ipw2200-fw
@@ -827,7 +870,6 @@ netctl
 network-manager-applet
 ppp
 pptpclient
-rfkill
 rp-pppoe
 rsync
 sdparm
@@ -837,7 +879,6 @@ ppp
 tinc
 vpnc
 wget
-wicd-gtk
 wireless_tools
 netctl
 wvdial

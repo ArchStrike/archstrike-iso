@@ -18,7 +18,7 @@ Environment Preparation
 $ git clone git@github.com:ArchStrike/archstrike-iso.git
 $ cd archstrike-iso
 $ cp archiso/{mkstrikeiso,unsquashiso} ~/bin
-$ ./archiso/unsquashiso
+# ./archiso/unsquashiso
 # cp -r /tmp/squashfs-root/etc/initcpio/* /usr/lib/initcpio/
 ```
 
