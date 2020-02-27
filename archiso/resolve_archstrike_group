@@ -2,7 +2,10 @@
 """ Write resolvable packages in archstrike group to stdout and summarize irresolvable to stderr
 
 Example usage:
-    $ ./resolve_archstrike_group ../configs/openbox/packages.both
+    $ resolve_archstrike_group <path>/<to>/archstrike-iso/configs/openbox/packages.both
+Through the example usage both the archstrike group and `../configs/openbox/packages.both` are inspected for
+ * packages that cannot be found or have a dependency that cannot be found
+ * conflicts between two packages such that any package in their dependency tree conflicts with a dependency in the other tree
 """
 import sys
 import pyalpm
