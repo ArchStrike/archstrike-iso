@@ -6,6 +6,7 @@ Example usage:
 Through the example usage both the archstrike group and `../configs/openbox/packages.both` are inspected for
  * packages that cannot be found or have a dependency that cannot be found
  * conflicts between two packages such that any package in their dependency tree conflicts with a dependency in the other tree
+Problems are written to stderr and a list of packages without issues is written to stdout.
 """
 import sys
 import pyalpm
