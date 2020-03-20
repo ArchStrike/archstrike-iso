@@ -11,6 +11,7 @@ Dependencies
  * `libisoburn`
  * `dosfstools`
  * `gcc-libs`
+ * `archiso`
 
 Environment Preparation
 -----------------------
@@ -19,18 +20,17 @@ $ git clone git@github.com:ArchStrike/archstrike-iso.git
 $ cd archstrike-iso
 $ cp archiso/{mkstrikeiso,unsquashiso} ~/bin
 # ./archiso/unsquashiso
-# cp -r /tmp/squashfs-root/etc/initcpio/* /usr/lib/initcpio/
 ```
 
 Building the ArchStrike ISO
 ---------------------------
 To build minimal ISO
 ```shell
-$ cd archstrike-iso/configs/minimal{,2}
+$ cd configs/minimal
 ```
 To build openbox ISO
 ```shell
-$ cd archstrike-iso/configs/openbox
+$ cd configs/openbox
 ```
 Then remove existing work directory, some bugs may exist such as multiple multilib entries,
 run the build script, and change the owner of the iso.
@@ -41,8 +41,8 @@ run the build script, and change the owner of the iso.
 
 Maintenance Notes
 -----------------
-Over time packages change, if you wish to find a list of packages that no longer exist run the following.
+Over time packages change, check for issues prior to attempting to build the Openbox ISO.
 ```
-$ for pkg in $(cat packages.both | grep -v '#'); do SSPKG="$(pacman -Ss "^$pkg\$" )"; [[ -z "$SSPKG" ]] && sed -i "/^$pkg\$/d" ./packages.both ; done
+$ ./archiso/resolve_archstrike_group configs/openbox/packages.both
 ```
-This will delete any dependencies that no longer resolve and using `git diff` should help figure out what needs some to be reviewed.
+This should report a list of packages you can use to stdout and report issues to stderr by analyzing the `archstrike` package group and `packages.both`.
