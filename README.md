@@ -45,6 +45,7 @@ Maintenance Notes
 -----------------
 Over time packages change, check for issues prior to attempting to build the Openbox ISO.
 ```
-$ ./archiso/resolve_archstrike_group configs/openbox/packages.both
+$ archstrike-arbitration --package archstrike
+$ archstrike-arbitration --file archstrike-iso/configs/openbox/packages.both
 ```
-This should report a list of packages you can use to stdout and report issues to stderr by analyzing the `archstrike` package group and `packages.both`.
+This should report a list of packages you can use to stdout and report issues to stderr by analyzing input.
