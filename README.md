@@ -12,9 +12,11 @@ Dependencies
  * `dosfstools`
  * `gcc-libs`
  * `archiso`
+ * `archstrike-installer`
 
 Environment Preparation
 -----------------------
+First verify that you have 30G of free disk space as the Openbox ISO uncompressed consumes more than 15G.
 ```shell
 $ git clone git@github.com:ArchStrike/archstrike-iso.git
 $ cd archstrike-iso

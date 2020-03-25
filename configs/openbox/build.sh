@@ -72,7 +72,7 @@ make_packages() {
     #    setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -r "pacman -Rdd --noconfirm gcc-libs" run
     #fi
 
-    setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -p "$(grep -h -v '^#' ${script_path}/packages.{both,${arch}})" install
+    setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -p "$(archstrike-arbitration ${script_path}/packages.{both,${arch}})" install
 }
 
 

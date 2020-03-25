@@ -13,14 +13,13 @@ dialog
 dkms
 dmraid
 dnsmasq
-dnsutils
+bind-tools
 dosfstools
 elinks
 ethtool
 exfat-utils
 f2fs-tools
 fsarchiver
-gnu-netcat
 gpm
 gptfdisk
 grml-zsh-config
@@ -52,7 +51,6 @@ partimage
 ppp
 pptpclient
 refind-efi
-rfkill
 rp-pppoe
 rsync
 sdparm
@@ -61,7 +59,7 @@ smartmontools
 tcpdump
 testdisk
 usb_modeswitch
-vim-minimal
+vim
 nano
 vpnc
 wget
