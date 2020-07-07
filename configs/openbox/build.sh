@@ -72,7 +72,7 @@ make_packages() {
     #    setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -r "pacman -Rdd --noconfirm gcc-libs" run
     #fi
 
-    setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -p "$(archstrike-arbitration ${script_path}/packages.{both,${arch}})" install
+    setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}/${arch}" -C "${pacman_conf}" -D "${install_dir}" -p "$(archstrike-arbitration --file ${script_path}/packages.{both,${arch}})" install
 }
 
 
@@ -198,7 +198,7 @@ make_efiboot() {
     mkfs.fat -n ARCHISO_EFI ${work_dir}/iso/EFI/archiso/efiboot.img
 
     mkdir -p ${work_dir}/efiboot
-    mount ${work_dir}/iso/EFI/archiso/efiboot.img ${work_dir}/efiboot
+    mount -t vfat -o loop ${work_dir}/iso/EFI/archiso/efiboot.img ${work_dir}/efiboot
 
     mkdir -p ${work_dir}/efiboot/EFI/archiso
     cp ${work_dir}/iso/${install_dir}/boot/x86_64/vmlinuz ${work_dir}/efiboot/EFI/archiso/vmlinuz.efi
@@ -229,7 +229,7 @@ make_efiboot() {
 
 # Build airootfs filesystem image
 make_prepare() {
-    cp -a -l -f ${work_dir}/${arch}/airootfs ${work_dir}
+    cp -r ${work_dir}/${arch}/airootfs ${work_dir}
     setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}" -D "${install_dir}" pkglist
     setarch ${arch} mkstrikeiso ${verbose} -s img -w "${work_dir}" -D "${install_dir}" prepare
     rm -rf ${work_dir}/airootfs
