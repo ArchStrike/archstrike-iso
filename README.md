@@ -20,8 +20,9 @@ First verify that you have 30G of free disk space as the Openbox ISO uncompresse
 ```shell
 $ git clone git@github.com:ArchStrike/archstrike-iso.git
 $ cd archstrike-iso
-$ cp archiso/{mkstrikeiso,unsquashiso} ~/bin
-# ./archiso/unsquashiso
+$ ln -s archiso/mkstrikeiso ~/bin/
+$ ln -s archiso/unsquashiso ~/bin/
+# unsquashiso
 ```
 
 Building the ArchStrike ISO
