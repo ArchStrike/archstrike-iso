@@ -230,7 +230,7 @@ make_efiboot() {
 make_prepare() {
     cp -r ${work_dir}/${arch}/airootfs ${work_dir}/
     setarch ${arch} mkstrikeiso ${verbose} -w "${work_dir}" -D "${install_dir}" pkglist
-    setarch ${arch} mkstrikeiso ${verbose} -s img -w "${work_dir}" -D "${install_dir}" prepare
+    setarch ${arch} mkstrikeiso ${verbose} -s sfs -w "${work_dir}" -D "${install_dir}" prepare
     rm -rf ${work_dir}/airootfs
     # rm -rf ${work_dir}/${arch}/airootfs (if low space, this helps)
 }
