@@ -22,7 +22,9 @@ make clean
 make build-archstrike-iso
 make sign
 ```
-To use a non-default gpg key to sign, run `GPG_OPTIONS="--default-key <your-key-id>" make sign` in userland.
+To use a non-default gpg key to sign, run `GPG_OPTIONS="--default-key <your-key-id>" make sign` in userland.    
+
+To change the output location to say `/tmp`, run `BUILD_DIR=/tmp/archstrike-iso-build make`.    
 
 ## Developer Notes
 
