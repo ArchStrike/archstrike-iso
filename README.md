@@ -36,10 +36,10 @@ archstrike-arbitration --file archstrike-iso/configs/archstrike/packages.both
 This should report a list of packages you can use to stdout and report issues to stderr by analyzing input.
 
 ## Mirror Performance 
-If you would like to improve build performance, you may wish to optimize your mirror list.
+If you would like to improve build performance, you may wish to optimize your mirror list. Update your mirrorlist with a ranked mirrorlist by executing the following in userland.
 ```
-$ reflector --country US,GE --age 12 --sort rate --save /tmp/mirrorlist-reflector
-$ rankmirrors /tmp/mirrorlist-reflector  > /tmp/mirrorlist-ranked
-# cp -bv /tmp/mirrorlist-ranked /etc/pacman.d/mirrorlist
+reflector --country US,GE --age 12 --sort rate --save /tmp/mirrorlist-reflector
+rankmirrors /tmp/mirrorlist-reflector  > /tmp/mirrorlist-ranked
+sudo cp -bv /tmp/mirrorlist-ranked /etc/pacman.d/mirrorlist
 ```
 
