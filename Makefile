@@ -2,9 +2,9 @@
 # TODOs:
 # 	- review archiso/README.rst to see if there is a better way to test the iso
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-TMPDIR=/tmp/archstrike-iso
-WORK=${TMPDIR}/work
-OUT=${TMPDIR}/out
+BUILD_DIR?=/opt/archstrike-iso-build
+WORK=${BUILD_DIR}/work
+OUT=${BUILD_DIR}/out
 PROFILE=${ROOT_DIR}/configs/archstrike
 
 
@@ -15,7 +15,8 @@ clean:
 	sudo rm -fr ${WORK} ${OUT}
 
 build-archstrike-iso:
-	mkdir -pv /tmp/archstrike-iso
+	sudo mkdir -pv ${BUILD_DIR}
+	sudo chown ${LOGNAME} ${BUILD_DIR}
 	sudo ./archiso/archiso/mkarchiso -v -w ${WORK} -o ${OUT} ${PROFILE}
 
 sign:
