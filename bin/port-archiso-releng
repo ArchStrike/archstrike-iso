@@ -13,7 +13,7 @@ update_archstrike_cfgs() {
     cp -a "${releng_profile}/." "${profile}"
     sed -i -e 's/Arch Linux/ArchStrike/g' -e 's/archlinux/archstrike/g' "${sed_archstrike[@]}"
     # ignore changes to the syslinux splash image
-    git checkout HEAD -- "${profile}/syslinux/splash.png"
+    git checkout HEAD -- "${profile}/syslinux/splash.png" "${profile}/airootfs/etc/motd"
 }
 
 add_archstrike_pacman_key() {
