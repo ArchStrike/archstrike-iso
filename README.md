@@ -2,15 +2,6 @@ archstrike-iso
 ===============
 The archstrike-iso project is a customization of the official Arch Linux archiso releng profile. The submodule archiso is needed to create a custom live media. If you have not already, please review `archiso/README.rst`.   
 
-Dependencies
-------------
- * All dependencies specified by `archiso/README.rst`
- * `archstrike-installer`
- * `reflector`
- * `arch-install-scripts`
- * `lynx`
- * `gcc-libs`
-
 Environment Preparation
 -----------------------
 Make sure to initialize the archiso submodule (i.e. `git submodule init --update --recursive`).
@@ -21,6 +12,15 @@ $ reflector --country US,GE --age 12 --sort rate --save /tmp/mirrorlist-reflecto
 $ rankmirrors /tmp/mirrorlist-reflector  > /tmp/mirrorlist-ranked
 # cp -bv /tmp/mirrorlist-ranked /etc/pacman.d/mirrorlist
 ```
+
+Things will not work as expected without installing the necessary dependencies with pacman:
+ * All dependencies specified by `archiso/README.rst`
+ * `archstrike-installer`
+ * `reflector`
+ * `arch-install-scripts`
+ * `lynx`
+ * `gcc-libs`
+
 
 Creating the ArchStrike ISO
 ---------------------------
