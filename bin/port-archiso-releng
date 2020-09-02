@@ -12,6 +12,8 @@ update_archstrike_cfgs() {
                     "${profile}/syslinux/archiso_sys.cfg")
     cp -a "${releng_profile}/." "${profile}"
     sed -i -e 's/Arch Linux/ArchStrike/g' -e 's/archlinux/archstrike/g' "${sed_archstrike[@]}"
+    # ignore changes to the syslinux splash image
+    git checkout HEAD -- "${profile}/syslinux/splash.png"
 }
 
 add_archstrike_pacman_key() {
@@ -29,7 +31,7 @@ set_root_shell_zsh() {
 
 add_archstrike_pacman_server() {
     printf "Adding the ArchStrike server to pacman.conf...\n"
-    printf '[archstrike]\nServer = http://mirror.archstrike.org/$arch/$repo' >> "${profile}/pacman.conf"
+    printf "[archstrike]\nServer = http://mirror.archstrike.org/\$arch/\$repo" >> "${profile}/pacman.conf"
 }
 
 merge_packages_archstrike() {

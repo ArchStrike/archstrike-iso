@@ -13,23 +13,23 @@ Dependencies
 
 Environment Preparation
 -----------------------
-If you would like to improve build perfomance, you may wish to optimize your mirror list.
+Make sure to initial the submodule for archiso (i.e. `git submodule init --update --recursive`).
+
+If you would like to improve build performance, you may wish to optimize your mirror list.
 ```
 $ reflector --country US,GE --age 12 --sort rate --save /tmp/mirrorlist-reflector
 $ rankmirrors /tmp/mirrorlist-reflector  > /tmp/mirrorlist-ranked
 # cp -bv /tmp/mirrorlist-ranked /etc/pacman.d/mirrorlist
 ```
-Make sure that the directory `archstrike-iso/bin` is searched first by the root user. Otherwise, the build script might not work as expected. If you have not already, add prepend `archstrike-iso/bin` to the `PATH` environment variable.
-```shell
-$ cd archstrike-iso
-# printf 'export PATH="%s:${PATH}"\n' "$(realpath bin)" >> /root/.bashrc
-```
 
 Creating the ArchStrike ISO
 ---------------------------
-To build minimal ISO
-```shell
-# unsquashiso
+To build the ArchStrike ISO, simply run `make`. Equivalently, you can run each target.
+``shell
+# make check
+# make clean
+# make build-archstrike-iso
+# make sign
 $ cd configs/minimal
 ```
 Then remove the directory `work` and run the build script.
