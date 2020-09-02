@@ -1,44 +1,40 @@
 archstrike-iso
 ===============
-ArchStrike-iso is a collection of configurations and scripts to generate the official iso.    
+The archstrike-iso project is a customization of the official Arch Linux archiso releng profile. The submodule archiso is needed to create a custom live media. If you have not already, please review `archiso/README.rst`.   
 
 Dependencies
 ------------
- * `qemu`
- * `squashfs-tools`
+ * All dependencies specified by `archiso/README.rst`
+ * `archstrike-installer`
+ * `reflector`
  * `arch-install-scripts`
  * `lynx`
- * `libisoburn`
- * `dosfstools`
  * `gcc-libs`
- * `archiso`
- * `archstrike-installer`
 
 Environment Preparation
 -----------------------
-First verify that you have 30G of free disk space as the Openbox ISO uncompressed consumes more than 15G.
+If you would like to improve build perfomance, you may wish to optimize your mirror list.
+```
+$ reflector --country US,GE --age 12 --sort rate --save /tmp/mirrorlist-reflector
+$ rankmirrors /tmp/mirrorlist-reflector  > /tmp/mirrorlist-ranked
+# cp -bv /tmp/mirrorlist-ranked /etc/pacman.d/mirrorlist
+```
+Make sure that the directory `archstrike-iso/bin` is searched first by the root user. Otherwise, the build script might not work as expected. If you have not already, add prepend `archstrike-iso/bin` to the `PATH` environment variable.
 ```shell
-$ git clone git@github.com:ArchStrike/archstrike-iso.git
 $ cd archstrike-iso
-$ ln -s archiso/mkstrikeiso ~/bin/
-$ ln -s archiso/unsquashiso ~/bin/
-# unsquashiso
+# printf 'export PATH="%s:${PATH}"\n' "$(realpath bin)" >> /root/.bashrc
 ```
 
-Building the ArchStrike ISO
+Creating the ArchStrike ISO
 ---------------------------
 To build minimal ISO
 ```shell
+# unsquashiso
 $ cd configs/minimal
 ```
-To build openbox ISO
-```shell
-$ cd configs/openbox
+Then remove the directory `work` and run the build script.
 ```
-Then remove existing work directory, some bugs may exist such as multiple multilib entries,
-run the build script, and change the owner of the iso.
-```
-# [[ -e work ]] && rm -rf ./work/*
+# rm -rf ./work/*
 # ./build.sh -v
 ```
 
