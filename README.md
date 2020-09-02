@@ -13,7 +13,7 @@ Dependencies
 
 Environment Preparation
 -----------------------
-Make sure to initial the submodule for archiso (i.e. `git submodule init --update --recursive`).
+Make sure to initialize the archiso submodule (i.e. `git submodule init --update --recursive`).
 
 If you would like to improve build performance, you may wish to optimize your mirror list.
 ```
@@ -30,13 +30,8 @@ To build the ArchStrike ISO, simply run `make`. Equivalently, you can run each t
 # make clean
 # make build-archstrike-iso
 # make sign
-$ cd configs/minimal
 ```
-Then remove the directory `work` and run the build script.
-```
-# rm -rf ./work/*
-# ./build.sh -v
-```
+To use a non-default gpg key to sign, run `GPG_OPTIONS="--default-key <your-key-id>" make sign`.
 
 Maintenance Notes
 -----------------
