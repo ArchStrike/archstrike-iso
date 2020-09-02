@@ -15,21 +15,21 @@ Use pacman to install dependencies as needed.
 
 ## Creating the ArchStrike ISO
 
-To build the ArchStrike ISO, simply run `make`. Equivalently, you can run each target.
+To build the ArchStrike ISO, simply run `make` in userland. Equivalently, you can run each target in userland.
 ```shell
-# make check
-# make clean
-# make build-archstrike-iso
-# make sign
+make check
+make clean
+make build-archstrike-iso
+make sign
 ```
-To use a non-default gpg key to sign, run `GPG_OPTIONS="--default-key <your-key-id>" make sign`.
+To use a non-default gpg key to sign, run `GPG_OPTIONS="--default-key <your-key-id>" make sign` in userland.
 
 ## Developer Notes
 
-Over time packages change, check for issues prior to attempting to build the Openbox ISO.
-```
-$ archstrike-arbitration --package archstrike
-$ archstrike-arbitration --file archstrike-iso/configs/openbox/packages.both
+Over time packages change, check for issues prior to attempting to install the entire `archstrike` package group. You can do so by running the following commands in userland.
+```shell
+archstrike-arbitration --package archstrike
+archstrike-arbitration --file archstrike-iso/configs/archstrike/packages.both
 ```
 This should report a list of packages you can use to stdout and report issues to stderr by analyzing input.
 
