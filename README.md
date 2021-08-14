@@ -36,6 +36,26 @@ archstrike-arbitration --file archstrike-iso/configs/archstrike/packages.both
 ```
 This should report a list of packages you can use to stdout and report issues to stderr by analyzing input.
 
+### Sync with Upstream
+The archiso submodule points to the ArchStrike fork. So, keep the master branch for `ArchStrike/archiso` up-to-date.
+```shell
+git -C archiso remote add upstream git@github.com:archlinux/archiso.git
+git -C archiso fetch upstream
+git -C archiso rebase upstream/master
+git -C archiso push
+```
+Git submodules only support branches within the `.gitmodules` config
+```shell
+latest="$(git -C archiso describe --abbrev=0)"
+git -C archiso checkout -b ${latest} refs/tags/${latest}
+git submodule set-branch --branch "${latest}" archiso
+git submodule update --remote
+git add .gitmodules archiso
+git commit -m "Updated archiso submodule branch to ${latest}"
+```
+### Update Submodule Branch
+
+
 ## Mirror Performance 
 If you would like to improve build performance, you may wish to optimize your mirror list. Update your mirrorlist with a ranked mirrorlist by executing the following in userland.
 ```
