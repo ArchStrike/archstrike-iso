@@ -1,3 +1,4 @@
 [submodule "archiso"]
 	path = archiso
-	url = https://gitlab.archlinux.org/archlinux/archiso.git
+	url = git@github.com:ArchStrike/archiso.git
+	branch = v57
