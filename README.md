@@ -48,10 +48,12 @@ Git submodules only support branches within the `.gitmodules` config
 ```shell
 latest="$(git -C archiso describe --abbrev=0)"
 git -C archiso checkout -b ${latest} refs/tags/${latest}
+git -C archiso push -u origin refs/heads/${latest}
 git submodule set-branch --branch "${latest}" archiso
-git submodule update --remote
 git add .gitmodules archiso
 git commit -m "Updated archiso submodule branch to ${latest}"
+git tag -a archiso-${latest} -m "Submodule archiso branch and SHA-1 index updated to latest: refs/tags/${latest}"
+git push origin HEAD refs/tags/archiso-${latest}
 ```
 ### Update Submodule Branch
 
