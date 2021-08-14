@@ -1,4 +1,4 @@
 [submodule "archiso"]
 	path = archiso
 	url = git@github.com:ArchStrike/archiso.git
-	branch = v57
+	branch = patched-v47.1
