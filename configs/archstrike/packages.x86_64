@@ -5,7 +5,6 @@ archstrike-keyring
 archstrike-mirrorlist
 b43-fwcutter
 base
-bind-tools
 broadcom-wl
 btrfs-progs
 clonezilla
@@ -44,7 +43,6 @@ ipw2200-fw
 irssi
 iwd
 jfsutils
-joe
 kitty-terminfo
 lftp
 linux
@@ -83,7 +81,6 @@ parted
 partimage
 ppp
 pptpclient
-refind-efi
 reflector
 reiserfsprogs
 rp-pppoe
@@ -98,7 +95,6 @@ syslinux
 systemd-resolvconf
 tcpdump
 terminus-font
-termite-terminfo
 testdisk
 usb_modeswitch
 usbutils

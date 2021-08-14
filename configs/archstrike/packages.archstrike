@@ -9,12 +9,10 @@ elinks
 exfat-utils
 grub
 inetutils
-joe
 linux-headers
 ndiswrapper
 netctl
 ntfsprogs
 ntp
-refind-efi
 squashfs-tools
 wget

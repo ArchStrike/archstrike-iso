@@ -13,7 +13,6 @@ dialog
 dkms
 dmraid
 dnsmasq
-bind-tools
 dosfstools
 elinks
 ethtool
@@ -50,7 +49,6 @@ parted
 partimage
 ppp
 pptpclient
-refind-efi
 rp-pppoe
 rsync
 sdparm
