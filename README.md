@@ -6,7 +6,8 @@ Make sure to initialize the archiso submodule (i.e. `git submodule init --update
 
 ## Dependencies
 Use pacman to install dependencies as needed.
- * `git submodule update --init`
+ * `git submodule init archiso`
+ * `git submodule update --remote`
  * `archstrike-installer`
  * `reflector`
  * `arch-install-scripts`
