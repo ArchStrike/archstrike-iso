@@ -14,6 +14,7 @@ update_archstrike_cfgs() {
     sed -i -e 's/Arch Linux/ArchStrike/g' -e 's/archlinux/archstrike/g' "${sed_archstrike[@]}"
     # prefer ours for syslinux splash and motd since they are ArchStrike themed
     git checkout HEAD -- "${profile}/syslinux/splash.png" "${profile}/airootfs/etc/motd"
+    sed -i 's/archiso/archstrike-iso/g' "${profile}/airootfs/etc/hostname"
 }
 
 add_archstrike_pacman_key() {
