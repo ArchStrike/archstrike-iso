@@ -36,15 +36,22 @@ archstrike-arbitration --file archstrike-iso/configs/archstrike/packages.both
 ```
 This should report a list of packages you can use to stdout and report issues to stderr by analyzing input.
 
-### Sync with Upstream
-The archiso submodule points to the ArchStrike fork. So, keep the master branch for `ArchStrike/archiso` up-to-date.
+### Sync Submodule with Upstream
+The archiso submodule points to the ArchStrike fork and the submodule URL default uses the HTTPS protocol. If
+you prefer to authenticate using SSH, then update the URL within the submodule.
+```shell
+git -C archiso config remote.origin.url git@github.com:ArchStrike/archiso.git
+```
+If configured correctly, then you will be able to push changes to `ArchStrike/archiso` and keep it up-to-date with upstream.
 ```shell
 git -C archiso remote add upstream git@github.com:archlinux/archiso.git
 git -C archiso fetch upstream
 git -C archiso rebase upstream/master master
 git -C archiso push
 ```
-Git submodules only support branches within the `.gitmodules` config
+
+### Latest ISO Tracking
+Breaking changes in `archiso` can block the critical path for doing a new ISO release. The latest successful ISO build is tracked on `master`.
 ```shell
 latest="$(git -C archiso describe --abbrev=0)"
 git -C archiso checkout -b ${latest} refs/tags/${latest}
@@ -55,8 +62,6 @@ git commit -m "Updated archiso submodule branch to ${latest}"
 git tag -a archiso-${latest} -m "Submodule archiso branch and SHA-1 index updated to latest: refs/tags/${latest}"
 git push origin HEAD refs/tags/archiso-${latest}
 ```
-### Update Submodule Branch
-
 
 ## Mirror Performance 
 If you would like to improve build performance, you may wish to optimize your mirror list. Update your mirrorlist with a ranked mirrorlist by executing the following in userland.
