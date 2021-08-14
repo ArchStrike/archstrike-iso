@@ -41,7 +41,7 @@ The archiso submodule points to the ArchStrike fork. So, keep the master branch 
 ```shell
 git -C archiso remote add upstream git@github.com:archlinux/archiso.git
 git -C archiso fetch upstream
-git -C archiso rebase upstream/master
+git -C archiso rebase upstream/master master
 git -C archiso push
 ```
 Git submodules only support branches within the `.gitmodules` config
