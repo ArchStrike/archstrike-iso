@@ -1,0 +1,22 @@
+{
+    "bootloader": "systemd-bootctl",
+    "filesystem": "btrfs",
+    "hostname": "archstrike",
+    "keyboard-language": "us",
+    "nic": {
+        "NetworkManager": true
+    },
+    "packages": [
+        "archstrike-keyring",
+        "archstrike-mirrorlist"
+    ],
+    "profile": "archstrike",
+    "superusers": {
+        "archie": {
+            "!password": "archie"
+        }
+    },
+    "timezone": "America/Chicago",
+    "sys-language": "en_US",
+    "sys-encoding": "utf-8"
+}

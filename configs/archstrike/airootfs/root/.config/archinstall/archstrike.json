@@ -1,0 +1,8 @@
+{
+    "hostname": "archstrike",
+    "packages": [
+        "archstrike-keyring",
+        "archstrike-mirrorlist"
+    ],
+    "advanced": true
+}
