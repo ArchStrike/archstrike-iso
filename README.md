@@ -4,8 +4,8 @@ The archstrike-iso project is a customization of the official Arch Linux archiso
 ## Initialize Submodule
 Make sure to initialize the archiso submodule (i.e. `git submodule init --update --recursive`).
 
-## Dependencies
-Use pacman to install dependencies as needed.
+## Requirements
+To create the image make sure to satisfy the `archstrike-iso` dependencies.
  * `git submodule init archiso`
  * `git submodule update --remote`
  * `archstrike-installer`
@@ -13,6 +13,8 @@ Use pacman to install dependencies as needed.
  * `arch-install-scripts`
  * `lynx`
  * `gcc-libs`
+
+The [archiso requirements](https://github.com/archlinux/archiso#requirements) must be satisfied as well.
 
 ## Creating the ArchStrike ISO
 
