@@ -10,6 +10,18 @@ PROFILE=${ROOT_DIR}/configs/archstrike
 
 check:
 	shellcheck -s bash bin/port-archiso-releng
+	pacman -Qi arch-install-scripts >/dev/null
+	pacman -Qi bash >/dev/null
+	pacman -Qi dosfstools >/dev/null
+	pacman -Qi e2fsprogs >/dev/null
+	pacman -Qi libarchive >/dev/null
+	pacman -Qi libisoburn >/dev/null
+	pacman -Qi mtools >/dev/null
+	pacman -Qi squashfs-tools >/dev/null
+	pacman -Qi edk2-ovmf >/dev/null
+	pacman -Qi erofs-utils >/dev/null
+	pacman -Qi openssl >/dev/null
+	pacman -Qi qemu >/dev/null
 
 clean:
 	sudo rm -fr ${WORK} ${OUT}

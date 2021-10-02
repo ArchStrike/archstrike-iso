@@ -6,19 +6,16 @@ Make sure to initialize the archiso submodule (i.e. `git submodule init --update
 
 ## Requirements
 To create the image make sure to satisfy the `archstrike-iso` dependencies.
- * `git submodule init archiso`
- * `git submodule update --remote`
- * `archstrike-installer`
- * `reflector`
- * `arch-install-scripts`
- * `lynx`
- * `gcc-libs`
- * `devtools`
-
-The [archiso requirements](https://github.com/archlinux/archiso#requirements) must be satisfied as well: 
-
 ```
-# pacman -S --asexplicit archiso && pacman -R archiso
+sudo pacman -S --needed make devtools
+git submodule init archiso
+git submodule update --remote
+```
+
+The submodule [archiso dependencies](https://github.com/archlinux/archiso#requirements) 
+```
+sudo pacman -S --needed arch-install-scripts bash dosfstools e2fsprogs libarchive libisoburn mtools squashfs-tools
+sudo pacman -S --needed edk2-ovmf erofs-utils openssl qemu
 ```
 
 ## Creating the ArchStrike ISO
