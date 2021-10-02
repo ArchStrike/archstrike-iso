@@ -13,8 +13,13 @@ To create the image make sure to satisfy the `archstrike-iso` dependencies.
  * `arch-install-scripts`
  * `lynx`
  * `gcc-libs`
+ * `devtools`
 
-The [archiso requirements](https://github.com/archlinux/archiso#requirements) must be satisfied as well.
+The [archiso requirements](https://github.com/archlinux/archiso#requirements) must be satisfied as well: 
+
+```
+# pacman -S --asexplicit archiso && pacman -R archiso
+```
 
 ## Creating the ArchStrike ISO
 
