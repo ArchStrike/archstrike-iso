@@ -3,7 +3,7 @@
 
 Welcome to the ArchStrike ISO!
 
-Run 'archinstall --config /root/.config/archinstall/archstrike.json' to start the installation.
+Run 'archinstall --config /root/.config/archinstall/profiles/archstrike.json --script archstrike-guided' to start the installation.
 
 Website https://archstrike.org
 Twitter @ArchStrike

@@ -1,16 +1,17 @@
 {
     "bootloader": "systemd-bootctl",
-    "filesystem": "btrfs",
     "hostname": "archstrike",
-    "keyboard-language": "us",
+    "keyboard-layout": "us",
     "nic": {
         "NetworkManager": true
     },
     "packages": [
         "archstrike-keyring",
-        "archstrike-mirrorlist"
+        "archstrike-mirrorlist",
+        "archstrike-xfce-config",
+        "archstrike-xfce-menu"
     ],
-    "profile": "archstrike",
+    "profile": "xfce4",
     "superusers": {
         "archie": {
             "!password": "archie"
