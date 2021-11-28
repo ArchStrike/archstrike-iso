@@ -290,6 +290,15 @@ def perform_installation(mountpoint):
             else:
                 installation.log("No audio server will be installed.", level=logging.INFO)
 
+            # Setup ArchStrike repository mirror
+            setup_mirror = [
+                "echo -e '[archstrike]\nServer = https://mirror.archstrike.org/$arch/$repo' >> /etc/pacman.conf",
+                "pacman-key --init",
+                "dirmngr < /dev/null",
+                "curl https://archstrike.org/keyfile.asc -o keyfile.asc",
+                "pacman-key --add keyfile.asc",
+            ]
+            run_custom_user_commands(setup_mirror, installation)
             if archinstall.arguments.get('packages', None) and archinstall.arguments.get('packages', None)[0] != '':
                 installation.add_additional_packages(archinstall.arguments.get('packages', None))
 

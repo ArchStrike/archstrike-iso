@@ -1,0 +1,37 @@
+{
+    "bootloader": "grub-install",
+    "hostname": "archstrike",
+    "keyboard-layout": "us",
+    "nic": {
+        "NetworkManager": true
+    },
+    "mirror-region": {
+        "United States": {
+            "https://arlm.tyzoid.com/$repo/os/$arch": true,
+            "https://mirrors.kernel.org/archlinux/$repo/os/$arch": true,
+            "https://america.mirror.pkgbuild.com/$repo/os/$arch": true,
+            "https://mirrors.rit.edu/archlinux/$repo/os/$arch": true,
+            "https://mirror.ette.biz/archlinux/$repo/os/$arch": true,
+            "https://mirrors.ocf.berkeley.edu/archlinux/$repo/os/$arch": true,
+            "https://plug-mirror.rcac.purdue.edu/archlinux/$repo/os/$arch": true,
+            "https://mirror.arizona.edu/archlinux/$repo/os/$arch": true
+        }
+    },
+    "packages": [
+        "archstrike-keyring",
+        "archstrike-mirrorlist",
+        "archstrike-xfce-config",
+        "archstrike-menu"
+    ],
+    "profile": "xfce4",
+    "superusers": {
+        "archie": {
+            "!password": "archie"
+        }
+    },
+    "ntp": true,
+    "swap": true,
+    "timezone": "America/Chicago",
+    "sys-language": "en_US",
+    "sys-encoding": "utf-8"
+}

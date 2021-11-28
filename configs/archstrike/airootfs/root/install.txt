@@ -3,7 +3,8 @@
 
 Welcome to the ArchStrike ISO!
 
-Run 'archinstall --config /root/.config/archinstall/profiles/archstrike.json --script archstrike-guided' to start the installation.
+To use the USA profile, `export profile=usa-default.json`. Otherwise, `export profile=advanced.json`. To install, run
+  archinstall --config /root/.config/archinstall/profiles/${profile} --script archstrike-guided
 
 Website https://archstrike.org
 Twitter @ArchStrike

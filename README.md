@@ -75,3 +75,24 @@ rankmirrors /tmp/mirrorlist-reflector  > /tmp/mirrorlist-ranked
 sudo cp -bv /tmp/mirrorlist-ranked /etc/pacman.d/mirrorlist
 ```
 
+### Test Arch Installer Script w/o ISO
+These instructions are based on the [upstream README.md](https://github.com/archlinux/archinstall#without-a-live-iso-image) for `archinstall`. Before starting, check the upstream documentation and make sure that `/dev/loop0p*` does not exist from previous testing.
+```shell
+truncate -s 20G testimage.img
+losetup -fP ./testimage.img
+losetup -a | grep "testimage.img" | awk -F ":" '{print $1}'
+pacman -Sy --needed archinstall-git
+pushd ./configs/archstrike/airootfs/root/.config/archinstall/
+```
+To test USA default configuration profile, run the command below.
+```shell
+archinstall --config ./profiles/usa-default.json --script archstrike-guided
+```shell
+To test USA the advanced configuration profile, run the command below.
+```
+archinstall --config ./profiles/advanced.json --script archstrike-guided
+```
+Once complete, you should see a message stating `Installation completed without any errors.` If you wish to virtualize your test, then use `qemu` and your `testimage.img`.
+```shell
+qemu-system-x86_64 -enable-kvm -machine q35,accel=kvm -device intel-iommu -cpu host -m 4096 -boot order=d -drive file=./testimage.img,format=raw -drive if=pflash,format=raw,readonly,file=/usr/share/ovmf/x64/OVMF_CODE.fd -drive if=pflash,format=raw,readonly,file=/usr/share/ovmf/x64/OVMF_VARS.fd
+```
