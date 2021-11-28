@@ -69,7 +69,7 @@ git push origin HEAD refs/tags/archiso-${latest}
 
 ## Mirror Performance 
 If you would like to improve build performance, you may wish to optimize your mirror list. Update your mirrorlist with a ranked mirrorlist by executing the following in userland.
-```
+```shell
 reflector --country US,GE --age 12 --sort rate --save /tmp/mirrorlist-reflector
 rankmirrors /tmp/mirrorlist-reflector  > /tmp/mirrorlist-ranked
 sudo cp -bv /tmp/mirrorlist-ranked /etc/pacman.d/mirrorlist
@@ -87,9 +87,9 @@ pushd ./configs/archstrike/airootfs/root/.config/archinstall/
 To test USA default configuration profile, run the command below.
 ```shell
 archinstall --config ./profiles/usa-default.json --script archstrike-guided
-```shell
-To test USA the advanced configuration profile, run the command below.
 ```
+To test USA the advanced configuration profile, run the command below.
+```shell
 archinstall --config ./profiles/advanced.json --script archstrike-guided
 ```
 Once complete, you should see a message stating `Installation completed without any errors.` If you wish to virtualize your test, then use `qemu` and your `testimage.img`.
