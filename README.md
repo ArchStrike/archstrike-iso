@@ -2,7 +2,7 @@
 The archstrike-iso project is a customization of the official Arch Linux archiso releng profile. The submodule archiso is needed to create a custom live media. If you have not already, please review `archiso/README.rst`.   
 
 ## Initialize Submodule
-Make sure to initialize the archiso submodule (i.e. `git submodule init --update --recursive`).
+Make sure to initialize the archiso submodule (i.e. `git submodule update --init --recursive`).
 
 ## Requirements
 To create the image make sure to satisfy the `archstrike-iso` dependencies.
