@@ -4,15 +4,19 @@ The archstrike-iso project is a customization of the official Arch Linux archiso
 ## Initialize Submodule
 Make sure to initialize the archiso submodule (i.e. `git submodule init --update --recursive`).
 
-## Dependencies
-Use pacman to install dependencies as needed.
- * `git submodule init archiso`
- * `git submodule update --remote`
- * `archstrike-installer`
- * `reflector`
- * `arch-install-scripts`
- * `lynx`
- * `gcc-libs`
+## Requirements
+To create the image make sure to satisfy the `archstrike-iso` dependencies.
+```
+sudo pacman -S --needed make devtools
+git submodule init archiso
+git submodule update --remote
+```
+
+The submodule [archiso dependencies](https://github.com/archlinux/archiso#requirements) 
+```
+sudo pacman -S --needed arch-install-scripts bash dosfstools e2fsprogs libarchive libisoburn mtools squashfs-tools
+sudo pacman -S --needed edk2-ovmf erofs-utils openssl qemu
+```
 
 ## Creating the ArchStrike ISO
 
@@ -36,16 +40,26 @@ archstrike-arbitration --file archstrike-iso/configs/archstrike/packages.both
 ```
 This should report a list of packages you can use to stdout and report issues to stderr by analyzing input.
 
-### Sync with Upstream
-The archiso submodule points to the ArchStrike fork. So, keep the master branch for `ArchStrike/archiso` up-to-date.
+### Sync Submodule with Upstream
+The archiso submodule points to the ArchStrike fork and the submodule URL default uses the HTTPS protocol. If
+you prefer to authenticate using SSH, then update the URL within the submodule.
+```shell
+git -C archiso config remote.origin.url git@github.com:ArchStrike/archiso.git
+```
+If configured correctly, then you will be able to push changes to `ArchStrike/archiso` and keep it up-to-date with upstream.
 ```shell
 git -C archiso remote add upstream git@github.com:archlinux/archiso.git
 git -C archiso fetch upstream
 git -C archiso rebase upstream/master master
 git -C archiso push
 ```
-Git submodules only support branches within the `.gitmodules` config
+
+### Latest ISO Tracking
+Breaking changes in `archiso` can block the critical path for doing a new ISO release. The latest successful ISO build is tracked on `master`.
 ```shell
+git -C archiso fetch upstream
+git -C archiso rebase upstream/master master
+git -C archiso push
 latest="$(git -C archiso describe --abbrev=0)"
 git -C archiso checkout -b ${latest} refs/tags/${latest}
 git -C archiso push -u origin refs/heads/${latest}
@@ -55,14 +69,32 @@ git commit -m "Updated archiso submodule branch to ${latest}"
 git tag -a archiso-${latest} -m "Submodule archiso branch and SHA-1 index updated to latest: refs/tags/${latest}"
 git push origin HEAD refs/tags/archiso-${latest}
 ```
-### Update Submodule Branch
-
 
 ## Mirror Performance 
 If you would like to improve build performance, you may wish to optimize your mirror list. Update your mirrorlist with a ranked mirrorlist by executing the following in userland.
-```
-reflector --country US,GE --age 12 --sort rate --save /tmp/mirrorlist-reflector
-rankmirrors /tmp/mirrorlist-reflector  > /tmp/mirrorlist-ranked
-sudo cp -bv /tmp/mirrorlist-ranked /etc/pacman.d/mirrorlist
+```shell
+reflector --country US --age 6 --score 30 --sort rate --save /tmp/mirrorlist
+sudo cp -bv {/tmp,/etc/pacman.d}/mirrorlist
 ```
 
+### Test Arch Installer Script w/o ISO
+These instructions are based on the [upstream README.md](https://github.com/archlinux/archinstall#without-a-live-iso-image) for `archinstall`. Before starting, check the upstream documentation and make sure that `/dev/loop0p*` does not exist from previous testing.
+```shell
+truncate -s 20G testimage.img
+losetup -fP ./testimage.img
+losetup -a | grep "testimage.img" | awk -F ":" '{print $1}'
+pacman -Sy --needed archinstall-git
+pushd ./configs/archstrike/airootfs/root/.config/archinstall/
+```
+To test USA default configuration profile, run the command below.
+```shell
+archinstall --config ./profiles/usa-default.json --script archstrike-guided
+```
+To test USA the advanced configuration profile, run the command below.
+```shell
+archinstall --config ./profiles/advanced.json --script archstrike-guided
+```
+Once complete, you should see a message stating `Installation completed without any errors.` If you wish to virtualize your test, then use `qemu` and your `testimage.img`.
+```shell
+qemu-system-x86_64 -enable-kvm -machine q35,accel=kvm -device intel-iommu -cpu host -m 4096 -boot order=d -drive file=./testimage.img,format=raw -drive if=pflash,format=raw,readonly,file=/usr/share/ovmf/x64/OVMF_CODE.fd -drive if=pflash,format=raw,readonly,file=/usr/share/ovmf/x64/OVMF_VARS.fd
+```

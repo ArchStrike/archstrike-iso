@@ -1,13 +1,9 @@
 
 
-
-Welcome to the ArchStrike Minimal ISO!
-
-Run 'install-archstrike' to start the installation.
+Welcome to the ArchStrike ISO!
 
 Website https://archstrike.org
 Twitter @ArchStrike
-IRC     #archstrike @ freenode.net
-
+IRC     #archstrike @ libera.chat
 
 

@@ -6,14 +6,12 @@ releng_profile="${toplevel}/archiso/configs/releng"
 
 update_archstrike_cfgs() {
     printf "Updating configurations...\n"
-    sed_archstrike=("${profile}/profiledef.sh"
-                    "${profile}/efiboot/loader/entries/archiso-x86_64-cd.conf"
-                    "${profile}/efiboot/loader/entries/archiso-x86_64-usb.conf"
-                    "${profile}/syslinux/archiso_sys.cfg")
     cp -a "${releng_profile}/." "${profile}"
-    sed -i -e 's/Arch Linux/ArchStrike/g' -e 's/archlinux/archstrike/g' "${sed_archstrike[@]}"
+    sed -i -e 's/Arch Linux/ArchStrike/g' -e 's/archlinux/archstrike/g' "${profile}/profiledef.sh"
+    sed -i -e 's/Arch Linux/ArchStrike/g' -e 's/archlinux/archstrike/g' "${profile}/syslinux/"*.cfg
     # prefer ours for syslinux splash and motd since they are ArchStrike themed
     git checkout HEAD -- "${profile}/syslinux/splash.png" "${profile}/airootfs/etc/motd"
+    sed -i 's/archiso/archstrike-iso/g' "${profile}/airootfs/etc/hostname"
 }
 
 add_archstrike_pacman_key() {
@@ -24,25 +22,20 @@ add_archstrike_pacman_key() {
     sed -i "/^${populate_archlinux}/a${populate_archstrike}" "${pacman_init_unitfile}"
 }
 
-set_root_shell_zsh() {
-    printf "Setting shell for root user to zsh...\n"
-    sed -i 's|/bin/bash|/usr/bin/zsh/|1' "${profile}/airootfs/etc/passwd"
-}
 
 add_archstrike_pacman_server() {
     printf "Adding the ArchStrike server to pacman.conf...\n"
-    printf "[archstrike]\nServer = http://mirror.archstrike.org/\$arch/\$repo" >> "${profile}/pacman.conf"
+    printf "[archstrike]\nServer = https://mirror.archstrike.org/\$arch/\$repo" >> "${profile}/pacman.conf"
 }
 
 merge_packages_archstrike() {
     printf "Merging packages.archstrike into packages.x86_64...\n"
     cat "${profile}/packages.archstrike" >> "${profile}/packages.x86_64"
-    sort "${profile}/packages.x86_64" -o "${profile}/packages.x86_64"
+    sort -u "${profile}/packages.x86_64" -o "${profile}/packages.x86_64"
     sed -i '/^#.*/d' "${profile}/packages.x86_64"
 }
 
 update_archstrike_cfgs
 add_archstrike_pacman_key
-set_root_shell_zsh
 add_archstrike_pacman_server
 merge_packages_archstrike
