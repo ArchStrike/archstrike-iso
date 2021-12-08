@@ -70,7 +70,7 @@ git tag -a archiso-${latest} -m "Submodule archiso branch and SHA-1 index update
 git push origin HEAD refs/tags/archiso-${latest}
 ```
 
-## Mirror Performance 
+### Mirror Performance 
 If you would like to improve build performance, you may wish to optimize your mirror list. Update your mirrorlist with a ranked mirrorlist by executing the following in userland.
 ```shell
 reflector --country US --age 6 --score 30 --sort rate --save /tmp/mirrorlist
@@ -98,3 +98,6 @@ Once complete, you should see a message stating `Installation completed without 
 ```shell
 qemu-system-x86_64 -enable-kvm -machine q35,accel=kvm -device intel-iommu -cpu host -m 4096 -boot order=d -drive file=./testimage.img,format=raw -drive if=pflash,format=raw,readonly,file=/usr/share/ovmf/x64/OVMF_CODE.fd -drive if=pflash,format=raw,readonly,file=/usr/share/ovmf/x64/OVMF_VARS.fd
 ```
+
+### Test ArchStrike ISO in QEMU
+Refer to the [Arch Linux Wiki: Test the ISO in QEMU](https://wiki.archlinux.org/title/archiso#Test_the_ISO_in_QEMU).
