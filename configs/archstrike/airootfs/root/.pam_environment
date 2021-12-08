@@ -1,2 +1,2 @@
-usa_profile DEFAULT="${HOME}/.config/archinstall/profiles/usa-default.json"
-adv_profile DEFAULT="${HOME}/.config/archinstall/profiles/advanced.json"
+usa_profile DEFAULT="/root/.config/archinstall/profiles/usa-default.json"
+adv_profile DEFAULT="/root/.config/archinstall/profiles/advanced.json"
