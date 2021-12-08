@@ -57,6 +57,9 @@ git -C archiso push
 ### Latest ISO Tracking
 Breaking changes in `archiso` can block the critical path for doing a new ISO release. The latest successful ISO build is tracked on `master`.
 ```shell
+git -C archiso fetch upstream
+git -C archiso rebase upstream/master master
+git -C archiso push
 latest="$(git -C archiso describe --abbrev=0)"
 git -C archiso checkout -b ${latest} refs/tags/${latest}
 git -C archiso push -u origin refs/heads/${latest}
@@ -70,9 +73,8 @@ git push origin HEAD refs/tags/archiso-${latest}
 ## Mirror Performance 
 If you would like to improve build performance, you may wish to optimize your mirror list. Update your mirrorlist with a ranked mirrorlist by executing the following in userland.
 ```shell
-reflector --country US,GE --age 12 --sort rate --save /tmp/mirrorlist-reflector
-rankmirrors /tmp/mirrorlist-reflector  > /tmp/mirrorlist-ranked
-sudo cp -bv /tmp/mirrorlist-ranked /etc/pacman.d/mirrorlist
+reflector --country US --age 6 --score 30 --sort rate --save /tmp/mirrorlist
+sudo cp -bv {/tmp,/etc/pacman.d}/mirrorlist
 ```
 
 ### Test Arch Installer Script w/o ISO
