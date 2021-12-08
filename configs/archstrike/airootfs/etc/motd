@@ -1,9 +1,9 @@
-For Wi-Fi, authenticate to the wireless network using the [35miwctl[0m utility.
-For mobile broadband (WWAN) modems, connect with the [35mmmcli[0m utility.
-Ethernet, WLAN and WWAN interfaces using DHCP should work automatically.
+Website: archstrike.org
 
-After connecting to the internet, select a profile and install [38;2;23;147;209mArchStrike[0m.
-    export profile=advanced.json
-    export profile=usa-default.json
-    archinstall --config ~/.config/archinstall/profiles/${profile} --script archstrike-guided
+For Wi-Fi use [35miwctl[0m. For WWAN modems use [35mmmcli[0m.
+Verify internet connectivity.
 
+To install [1;38;2;0;167;171mArchStrike[0m with USA defaults, run
+  archinstall --script archstrike-guided --config ${usa_profile}
+To install [1;38;2;0;167;171mArchStrike[0m with advance controls, run
+  archinstall --script archstrike-guided --config ${adv_profile}

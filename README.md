@@ -1,30 +1,26 @@
 # ArchStrike: Customized Arch Linux ISO     
-The archstrike-iso project is a customization of the official Arch Linux archiso releng profile. The submodule archiso is needed to create a custom live media. If you have not already, please review `archiso/README.rst`.   
-
-## Initialize Submodule
-Make sure to initialize the archiso submodule (i.e. `git submodule update --init --recursive`).
+The ArchStrike ISO installs our unofficial user repository mirror through a guided installation process using [archinstall](https://wiki.archlinux.org/title/Archinstall). Our customized Arch Linux image uses [archiso](https://wiki.archlinux.org/title/archiso), which builds the official Arch Linux images.
 
 ## Requirements
-To create the image make sure to satisfy the `archstrike-iso` dependencies.
-```
-sudo pacman -S --needed make devtools
-git submodule init archiso
-git submodule update --remote
+Before you build or test, make sure to install any dependencies needed (i.e., [archiso dependencies](https://github.com/archlinux/archiso#requirements))
+```shell
+sudo pacman -S --needed make devtools edk2-ovmf erofs-utils openssl qemu
+sudo pacman -S --needed arch-install-scripts bash dosfstools e2fsprogs libarchive libisoburn mtools squashfs-tools
 ```
 
-The submodule [archiso dependencies](https://github.com/archlinux/archiso#requirements) 
-```
-sudo pacman -S --needed arch-install-scripts bash dosfstools e2fsprogs libarchive libisoburn mtools squashfs-tools
-sudo pacman -S --needed edk2-ovmf erofs-utils openssl qemu
+## Submodule
+A fixed version of the `archiso` repository is embedded as a submodule to create the ArchStrike image.
+```shell
+sudo pacman -S --needed make devtools
+git submodule update --init --recursive --remote
 ```
 
 ## Creating the ArchStrike ISO
-
 To build the ArchStrike ISO, simply run `make` in userland. Equivalently, you can run each target in userland.
 ```shell
 make check
 make clean
-make build-archstrike-iso
+make build
 make sign
 ```
 To use a non-default gpg key to sign, run `GPG_OPTIONS="--default-key <your-key-id>" make sign` in userland.    
@@ -32,7 +28,6 @@ To use a non-default gpg key to sign, run `GPG_OPTIONS="--default-key <your-key-
 To change the output location to say `/tmp`, run `BUILD_DIR=/tmp/archstrike-iso-build make`.    
 
 ## Developer Notes
-
 Over time packages change, check for issues prior to attempting to install the entire `archstrike` package group. You can do so by running the following commands in userland.
 ```shell
 archstrike-arbitration --package archstrike
@@ -100,4 +95,15 @@ qemu-system-x86_64 -enable-kvm -machine q35,accel=kvm -device intel-iommu -cpu h
 ```
 
 ### Test ArchStrike ISO in QEMU
-Refer to the [Arch Linux Wiki: Test the ISO in QEMU](https://wiki.archlinux.org/title/archiso#Test_the_ISO_in_QEMU).
+Set the variable `image` value as the absolute path to the ArchStrike ISO.
+```shell
+image="${BUILD_DIR:-/opt/archstrike-iso-build}/out/archstrike-"$(date '+%Y.%m.%d')"-x86_64.iso"
+```
+Run the ArchStrike image using QEMU (boot type BIOS):
+```shell
+./archiso/scripts/run_archiso.sh -b -i ${image}
+```
+Run the ArchStrike image using QEMU (boot type UEFI):
+```shell
+./archiso/scripts/run_archiso.sh -u -i ${image}
+```

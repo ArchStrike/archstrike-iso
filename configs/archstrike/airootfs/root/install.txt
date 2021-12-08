@@ -1,9 +1,1 @@
-
-
-Welcome to the ArchStrike ISO!
-
-Website https://archstrike.org
-Twitter @ArchStrike
-IRC     #archstrike @ libera.chat
-
-
+../etc/motd
