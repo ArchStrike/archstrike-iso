@@ -1,14 +1,9 @@
 
 
-
 Welcome to the ArchStrike ISO!
-
-To use the USA profile, `export profile=usa-default.json`. Otherwise, `export profile=advanced.json`. To install, run
-  archinstall --config /root/.config/archinstall/profiles/${profile} --script archstrike-guided
 
 Website https://archstrike.org
 Twitter @ArchStrike
 IRC     #archstrike @ libera.chat
-
 
 
