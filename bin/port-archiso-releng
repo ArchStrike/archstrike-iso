@@ -4,6 +4,21 @@ toplevel="$(git rev-parse --show-toplevel --prefix "${repobin}")"
 profile="${toplevel}/configs/archstrike"
 releng_profile="${toplevel}/archiso/configs/releng"
 
+err_report() {
+    printf 'Error on line %s of port-archiso-releng\n' "${1}" >&2
+    exit 1
+}
+
+git_status_nonempty() {
+    printf "Checking git status for unexpected differences..\n"
+    status="$(git status --short)"
+    if [ -n "${status}" ]; then
+        printf "%s\n" "$1"
+        git status --short
+        return 1
+    fi
+}
+
 update_archstrike_cfgs() {
     printf "Updating configurations...\n"
     cp -a "${releng_profile}/." "${profile}"
@@ -22,7 +37,6 @@ add_archstrike_pacman_key() {
     sed -i "/^${populate_archlinux}/a${populate_archstrike}" "${pacman_init_unitfile}"
 }
 
-
 add_archstrike_pacman_server() {
     printf "Adding the ArchStrike server to pacman.conf...\n"
     printf "[archstrike]\nServer = https://mirror.archstrike.org/\$arch/\$repo" >> "${profile}/pacman.conf"
@@ -36,7 +50,15 @@ merge_packages_archstrike() {
     sed -i 's/^archinstall$/archinstall-git/1' "${profile}/packages.x86_64"
 }
 
+trap 'err_report $LINENO' ERR
+git_status_nonempty "Commit any local changes before trying to build"
 update_archstrike_cfgs
 add_archstrike_pacman_key
 add_archstrike_pacman_server
 merge_packages_archstrike
+read err_msg << EOM
+Review the local differences between archstrike-iso and releng. \
+If the differences should be customized, update port-archiso-releng. \
+Otherwise, commit the differences and push them.
+EOM
+git_status_nonempty "${err_msg}"

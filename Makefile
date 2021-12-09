@@ -28,6 +28,7 @@ clean:
 	sudo rm -fr ${WORK} ${OUT}
 
 build:
+	./bin/port-archiso-releng
 	sudo mkdir -pv ${BUILD_DIR}
 	sudo chown ${LOGNAME} ${BUILD_DIR}
 	sudo ./archiso/archiso/mkarchiso -v -w ${WORK} -o ${OUT} ${PROFILE}
