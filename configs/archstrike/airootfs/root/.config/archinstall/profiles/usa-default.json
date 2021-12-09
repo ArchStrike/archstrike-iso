@@ -24,10 +24,13 @@
         "archstrike-menu"
     ],
     "profile": "xfce4",
-    "!root-password": "",
-    "!superusers": {
-        "admin": {"!password": "admin"}
-    },
+    "!root-password": "root",
+	"!users": {
+		"admin": {"!password": "admin"}
+	},
+	"!superusers": {
+		"admin": {"!password": "admin"}
+	},
     "ntp": true,
     "swap": true,
     "timezone": "America/Chicago",

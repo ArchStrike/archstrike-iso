@@ -25,7 +25,7 @@ update_archstrike_cfgs() {
     sed -i -e 's/Arch Linux/ArchStrike/g' -e 's/archlinux/archstrike/g' "${profile}/profiledef.sh"
     sed -i -e 's/Arch Linux/ArchStrike/g' -e 's/archlinux/archstrike/g' "${profile}/syslinux/"*.cfg
     # prefer ours for syslinux splash and motd since they are ArchStrike themed
-    git checkout HEAD -- "${profile}/syslinux/splash.png" "${profile}/airootfs/etc/motd"
+    git checkout HEAD -- "${profile}/syslinux/splash.png" "${profile}/airootfs/etc/motd" "${profile}/airootfs/etc/passwd"
     sed -i 's/archiso/archstrike-iso/g' "${profile}/airootfs/etc/hostname"
 }
 
