@@ -1,0 +1,1 @@
+../../configs/archstrike/airootfs/root/.config/archinstall/profiles/archstrike-guided.py

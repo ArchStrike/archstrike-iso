@@ -1,8 +1,16 @@
 {
     "hostname": "archstrike",
-    "packages": [
-        "archstrike-keyring",
-        "archstrike-mirrorlist"
+    "custom-commands": [
+        "echo -e '[archstrike]\nServer = https://mirror.archstrike.org/$arch/$repo' >> /etc/pacman.conf",
+        "pacman-key --init",
+        "dirmngr < /dev/null",
+        "curl https://archstrike.org/keyfile.asc -o keyfile.asc",
+	"curl https://archstrike.org/keyfile-checksum -o keyfile-checksum",
+	"sha512sum -c keyfile-checksum",
+        "pacman-key --add keyfile.asc",
+        "rm keyfile.asc keyfile-checksum",
+        "pacman -Sy archstrike-keyring archstrike-mirrorlist",
+        "pacman -S archstrike-xfce-config archstrike-menu"
     ],
     "advanced": true
 }

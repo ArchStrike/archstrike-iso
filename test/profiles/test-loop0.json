@@ -2,6 +2,12 @@
     "bootloader": "grub-install",
     "hostname": "archstrike",
     "keyboard-layout": "us",
+    "audio": "pulseaudio",
+    "gfx_driver": "VMware / VirtualBox (open-source)",
+    "packages": [],
+    "harddrives": [
+        "/dev/loop0"
+    ],
     "custom-commands": [
         "echo -e '[archstrike]\nServer = https://mirror.archstrike.org/$arch/$repo' >> /etc/pacman.conf",
         "pacman-key --init",
@@ -13,6 +19,9 @@
         "rm keyfile.asc keyfile-checksum",
         "pacman -Sy archstrike-keyring archstrike-mirrorlist",
         "pacman -S archstrike-xfce-config archstrike-menu"
+    ],
+    "kernels": [
+        "linux"
     ],
     "nic": {
         "NetworkManager": true
@@ -30,16 +39,13 @@
         }
     },
     "packages": [
-        "archstrike-keyring",
-        "archstrike-mirrorlist",
-        "archstrike-xfce-config",
-        "archstrike-menu"
     ],
     "profile": "xfce4",
+    "!encryption-password": "",
     "!root-password": "root",
-	"!superusers": {
-		"admin": {"!password": "admin"}
-	},
+    "!superusers": {
+        "admin": {"!password": "admin"}
+    },
     "ntp": true,
     "swap": true,
     "timezone": "America/Chicago",

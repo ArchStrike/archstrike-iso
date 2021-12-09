@@ -166,13 +166,13 @@ def ask_user_questions():
         archinstall.arguments['kernels'] = archinstall.select_kernel(kernels)
 
     # Additional packages (with some light weight error handling for invalid package names)
+    """
     print("Only packages such as base, base-devel, linux, linux-firmware, efibootmgr and optional profile packages are installed.")
     print("If you desire a web browser, such as firefox or chromium, you may specify it in the following prompt.")
     while True:
         if not archinstall.arguments.get('packages', None):
             archinstall.arguments['packages'] = [package for package in input('Write additional packages to install (space separated, leave blank to skip): ').split(' ') if len(package)]
         break
-        """
         if len(archinstall.arguments['packages']):
             # Verify packages that were given
             try:
@@ -247,14 +247,6 @@ def perform_filesystem_operations():
                     fs.load_layout(archinstall.storage['disk_layouts'][drive.path])
 
 def perform_installation(mountpoint):
-    setup_mirror = [
-        "echo -e '[archstrike]\nServer = https://mirror.archstrike.org/$arch/$repo' >> /etc/pacman.conf",
-        "pacman-key --init",
-        "dirmngr < /dev/null",
-        "curl https://archstrike.org/keyfile.asc -o keyfile.asc",
-        "pacman-key --add keyfile.asc",
-    ]
-    archinstall.run_custom_user_commands(setup_mirror, installation)
     user_credentials = {}
     if archinstall.arguments.get('!users'):
         user_credentials["!users"] = archinstall.arguments['!users']
