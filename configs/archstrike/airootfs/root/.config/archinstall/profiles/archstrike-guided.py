@@ -245,14 +245,14 @@ def perform_filesystem_operations():
 					fs.load_layout(archinstall.storage['disk_layouts'][drive.path])
 
 def perform_installation(mountpoint):
-    setup_mirror = [
-        "echo -e '[archstrike]\nServer = https://mirror.archstrike.org/$arch/$repo' >> /etc/pacman.conf",
-       "pacman-key --init",
-        "dirmngr < /dev/null",
-        "curl https://archstrike.org/keyfile.asc -o keyfile.asc",
-        "pacman-key --add keyfile.asc",
-    ]
-    archinstall.run_custom_user_commands(setup_mirror, installation)
+	setup_mirror = [
+		"echo -e '[archstrike]\nServer = https://mirror.archstrike.org/$arch/$repo' >> /etc/pacman.conf",
+		"pacman-key --init",
+		"dirmngr < /dev/null",
+		"curl https://archstrike.org/keyfile.asc -o keyfile.asc",
+		"pacman-key --add keyfile.asc",
+	]
+	archinstall.run_custom_user_commands(setup_mirror, installation)
 	user_credentials = {}
 	if archinstall.arguments.get('!users'):
 		user_credentials["!users"] = archinstall.arguments['!users']
