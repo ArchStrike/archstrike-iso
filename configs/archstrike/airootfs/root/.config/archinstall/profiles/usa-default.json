@@ -25,9 +25,6 @@
     ],
     "profile": "xfce4",
     "!root-password": "root",
-	"!users": {
-		"admin": {"!password": "admin"}
-	},
 	"!superusers": {
 		"admin": {"!password": "admin"}
 	},
