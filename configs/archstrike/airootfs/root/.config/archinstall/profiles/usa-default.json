@@ -24,10 +24,9 @@
         "archstrike-menu"
     ],
     "profile": "xfce4",
-    "superusers": {
-        "archie": {
-            "!password": "archie"
-        }
+    "!root-password": "",
+    "!superusers": {
+        "admin": {"!password": "admin"}
     },
     "ntp": true,
     "swap": true,
