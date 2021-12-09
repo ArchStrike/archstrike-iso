@@ -1,5 +1,6 @@
 {
     "hostname": "archstrike",
+    "profile": "xfce4",
     "custom-commands": [
         "echo -e '[archstrike]\nServer = https://mirror.archstrike.org/$arch/$repo' >> /etc/pacman.conf",
         "pacman-key --init",

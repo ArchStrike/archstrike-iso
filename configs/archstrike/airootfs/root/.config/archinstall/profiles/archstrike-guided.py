@@ -185,7 +185,7 @@ def ask_user_questions():
         else:
             # no additional packages were selected, which we'll allow
             break
-        """
+    """
 
     # Ask or Call the helper function that asks the user to optionally configure a network.
     if not archinstall.arguments.get('nic', None):

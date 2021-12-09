@@ -79,15 +79,24 @@ truncate -s 20G testimage.img
 sudo losetup -fP ./testimage.img
 sudo losetup -a | grep "testimage.img" | awk -F ":" '{print $1}'
 sudo pacman -Sy --needed archinstall
-pushd ./configs/archstrike/airootfs/root/.config/archinstall/
+```
+To smoke test the script, run the command below
+```shell
+pushd test
+sudo archinstall --config ./profiles/test-loop0.json --disk_layouts=$(realpath ./profiles/disk-layout.json) --script archstrike-guided
+popd
 ```
 To test USA default configuration profile, run the command below.
 ```shell
+pushd ./configs/archstrike/airootfs/root/.config/archinstall/
 sudo archinstall --config ./profiles/usa-default.json --script archstrike-guided
+popd
 ```
 To test USA the advanced configuration profile, run the command below.
 ```shell
+pushd ./configs/archstrike/airootfs/root/.config/archinstall/
 sudo archinstall --config ./profiles/advanced.json --script archstrike-guided
+popd
 ```
 Once complete, you should see a message stating `Installation completed without any errors.` If you wish to virtualize your test, then use `qemu` and your `testimage.img`.
 ```shell

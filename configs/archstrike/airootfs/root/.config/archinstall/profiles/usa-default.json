@@ -33,12 +33,7 @@
             "https://mirror.arizona.edu/archlinux/$repo/os/$arch": true
         }
     },
-    "packages": [
-        "archstrike-keyring",
-        "archstrike-mirrorlist",
-        "archstrike-xfce-config",
-        "archstrike-menu"
-    ],
+    "packages": [],
     "profile": "xfce4",
     "!root-password": "root",
 	"!superusers": {
