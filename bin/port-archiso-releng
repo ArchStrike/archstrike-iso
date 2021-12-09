@@ -46,7 +46,7 @@ add_archstrike_pacman_server() {
 merge_packages_archstrike() {
     printf "Merging packages.archstrike into packages.x86_64...\n"
     cat "${profile}/packages.archstrike" >> "${profile}/packages.x86_64"
-    sort -u "${profile}/packages.x86_64" -o "${profile}/packages.x86_64"
+    sort -cu "${profile}/packages.x86_64" -o "${profile}/packages.x86_64"
     sed -i '/^#.*/d' "${profile}/packages.x86_64"
     # sed -i 's/^archinstall$/archinstall-git/1' "${profile}/packages.x86_64"
     cat "${profile}/packages.archstrike" >> "${profile}/bootstrap_packages.x86_64"
