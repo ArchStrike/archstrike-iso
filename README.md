@@ -76,18 +76,18 @@ sudo cp -bv {/tmp,/etc/pacman.d}/mirrorlist
 These instructions are based on the [upstream README.md](https://github.com/archlinux/archinstall#without-a-live-iso-image) for `archinstall`. Before starting, check the upstream documentation and make sure that `/dev/loop0p*` does not exist from previous testing.
 ```shell
 truncate -s 20G testimage.img
-losetup -fP ./testimage.img
-losetup -a | grep "testimage.img" | awk -F ":" '{print $1}'
-pacman -Sy --needed archinstall-git
+sudo losetup -fP ./testimage.img
+sudo losetup -a | grep "testimage.img" | awk -F ":" '{print $1}'
+sudo pacman -Sy --needed archinstall
 pushd ./configs/archstrike/airootfs/root/.config/archinstall/
 ```
 To test USA default configuration profile, run the command below.
 ```shell
-archinstall --config ./profiles/usa-default.json --script archstrike-guided
+sudo archinstall --config ./profiles/usa-default.json --script archstrike-guided
 ```
 To test USA the advanced configuration profile, run the command below.
 ```shell
-archinstall --config ./profiles/advanced.json --script archstrike-guided
+sudo archinstall --config ./profiles/advanced.json --script archstrike-guided
 ```
 Once complete, you should see a message stating `Installation completed without any errors.` If you wish to virtualize your test, then use `qemu` and your `testimage.img`.
 ```shell
