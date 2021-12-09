@@ -24,7 +24,7 @@ update_archstrike_cfgs() {
     cp -a "${releng_profile}/." "${profile}"
     sed -i -e 's/Arch Linux/ArchStrike/g' -e 's/archlinux/archstrike/g' "${profile}/profiledef.sh"
     sed -i -e 's/Arch Linux/ArchStrike/g' -e 's/archlinux/archstrike/g' "${profile}/syslinux/"*.cfg
-    sed -i -e 's/pacman\.conf/pacman-arshtrike.conf/g' "${profile}/profiledef.sh"
+    sed -i -e 's/pacman\.conf/pacman-archstrike.conf/g' "${profile}/profiledef.sh"
     # prefer ours for syslinux splash and motd since they are ArchStrike themed
     git checkout HEAD -- "${profile}/syslinux/splash.png" "${profile}/airootfs/etc/motd"
     sed -i 's/archiso/archstrike-iso/g' "${profile}/airootfs/etc/hostname"
