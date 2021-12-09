@@ -30,8 +30,8 @@ To change the output location to say `/tmp`, run `BUILD_DIR=/tmp/archstrike-iso-
 ## Developer Notes
 Over time packages change, check for issues prior to attempting to install the entire `archstrike` package group. You can do so by running the following commands in userland.
 ```shell
-archstrike-arbitration --package archstrike
-archstrike-arbitration --file archstrike-iso/configs/archstrike/packages.both
+./bin/archstrike-arbitration --package archstrike
+./bin/archstrike-arbitration --file ./configs/archstrike/packages.x86_64
 ```
 This should report a list of packages you can use to stdout and report issues to stderr by analyzing input.
 
