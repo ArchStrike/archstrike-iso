@@ -13,7 +13,7 @@
         "rm keyfile.asc keyfile-checksum",
         "pacman -S --noconfirm archstrike-keyring",
         "pacman -S --noconfirm archstrike-mirrorlist",
-        "sed -i 's/^Serv.*archstrike.*/Include = \/etc\/pacman.d\/archstrike-mirrorlist/1' /etc/pacman.conf",
+        "sed -i 's|^Serv.*archstrike.*|Include = /etc/pacman.d/archstrike-mirrorlist|1' /etc/pacman.conf",
         "pacman -Syy",
         "sed -i -e 's/Arch Linux/ArchStrike/g' /boot/grub/grub.cfg",
         "pacman -S --noconfirm archstrike-xfce-config archstrike-menu"
