@@ -1,9 +1,7 @@
 alsa-utils
 amd-ucode
-archinstall
 arch-install-scripts
-archstrike-keyring
-archstrike-mirrorlist
+archinstall
 b43-fwcutter
 base
 bind-tools
@@ -120,3 +118,5 @@ wvdial
 xfsprogs
 xl2tpd
 zsh
+archstrike-keyring
+archstrike-mirrorlist
