@@ -11,8 +11,9 @@
 	"sha512sum -c keyfile-checksum",
         "pacman-key --add keyfile.asc",
         "rm keyfile.asc keyfile-checksum",
-        "pacman -Sy archstrike-keyring archstrike-mirrorlist",
-        "pacman -S archstrike-xfce-config archstrike-menu"
+        "pacman -Sy --noconfirm archstrike-keyring",
+        "pacman -S --noconfirm archstrike-mirrorlist",
+        "pacman -S --noconfirm archstrike-xfce-config archstrike-menu"
     ],
     "nic": {
         "NetworkManager": true
