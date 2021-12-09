@@ -59,9 +59,9 @@ update_archstrike_cfgs
 add_archstrike_pacman_key
 add_archstrike_pacman_server
 merge_packages_archstrike
-read err_msg << EOM
-Review the local differences between archstrike-iso and releng. \
-If the differences should be customized, update port-archiso-releng. \
+read -r err_msg << EOM
+Review the local differences between archstrike-iso and releng.
+If the differences should be customized, update port-archiso-releng.
 Otherwise, commit the differences and push them.
 EOM
 git_status_nonempty "${err_msg}"
