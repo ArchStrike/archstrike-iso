@@ -28,7 +28,8 @@
 	"for d in $(ls /home/); do mkdir -pv /home/${d}/.config; cp -a /usr/share/archstrike-xfce-config/config/xfce4 /home/${d}/.config/; done",
 	"for d in $(ls /home/); do chown -R $(stat -c '%U:%G' /home/${d}) /home/${d}; done",
 	"cp -a /usr/share/archstrike-xfce-config/icons/* /usr/share/pixmaps/",
-	"cp -a /usr/share/archstrike-xfce-config/wallpapers/* /usr/share/backgrounds/xfce/"
+	"cp -a /usr/share/archstrike-xfce-config/wallpapers/* /usr/share/backgrounds/xfce/",
+	"cp -a /usr/share/backgrounds/xfce/{archstrike_wallpaper.jpg,xfce-verticals.png}"
     ],
     "kernels": [
         "linux"
