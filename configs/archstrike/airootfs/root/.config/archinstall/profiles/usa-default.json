@@ -16,7 +16,7 @@
         "sed -i 's|^Serv.*archstrike.*|Include = /etc/pacman.d/archstrike-mirrorlist|1' /etc/pacman.conf",
         "pacman -Syy",
         "sed -i -e 's/Arch Linux/ArchStrike/g' /boot/grub/grub.cfg",
-        "pacman -S --noconfirm archstrike-xfce-config archstrike-menu",
+        "pacman -S --noconfirm archstrike-xfce-config archstrike-menu vim git tmux",
 	"mkdir -pv /etc/skel/.config; cp -a /usr/share/archstrike-xfce-config/config/xfce4 /etc/skel/.config/",
 	"mkdir -pv /root/${d}/.config; cp -a /usr/share/archstrike-xfce-config/config/xfce4 /root/.config/",
 	"for d in $(ls /home/); do mkdir -pv /home/${d}/.config; cp -a /usr/share/archstrike-xfce-config/config/xfce4 /home/${d}/.config/; done",
