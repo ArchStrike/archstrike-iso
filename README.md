@@ -102,7 +102,14 @@ Once complete, you should see a message stating `Installation completed without 
 ```shell
 qemu-system-x86_64 -enable-kvm -machine q35,accel=kvm -device intel-iommu -cpu host -m 4096 -boot order=d -drive file=./testimage.img,format=raw -drive if=pflash,format=raw,readonly,file=/usr/share/ovmf/x64/OVMF_CODE.fd -drive if=pflash,format=raw,readonly,file=/usr/share/ovmf/x64/OVMF_VARS.fd
 ```
-
+Using ramdisk may improve I/O performance when running `make`. To set mount ramdisk to `/opt/archstrike-iso-build`, try the following.
+```shell
+modprobe brd rd_nr=1 rd_size=8388608
+parted /dev/ram0 mklabel gpt mkpart P1 ext4 1MiB 100%
+parted /dev/ram0  mkpart primary ext4 0% 100%
+mkfs.ext4 /dev/ram0p1
+mount /dev/ram0p1 /opt/archstrike-iso-build/
+```
 ### Test ArchStrike ISO in QEMU
 Set the variable `image` value as the absolute path to the ArchStrike ISO.
 ```shell
