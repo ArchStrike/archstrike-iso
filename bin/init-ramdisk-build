@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+BUILD_DIR="${BUILD_DIR:-/opt/archstrike-iso-build}"
+sudo umount -qR ${BUILD_DIR}
+sudo modprobe brd rd_nr=1 rd_size=20971520
+sudo sgdisk --zap-all /dev/ram0
+sudo parted -a optimal /dev/ram0 mklabel gpt mkpart primary ext4 0% 100%
+sudo wipefs -fa /dev/ram0p1
+sudo mkfs.ext4 /dev/ram0p1
+sudo mount -t ext4 /dev/ram0p1 /opt/archstrike-iso-build/

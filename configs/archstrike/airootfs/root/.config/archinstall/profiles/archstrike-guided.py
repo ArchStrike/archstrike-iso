@@ -244,6 +244,8 @@ def perform_filesystem_operations():
         for drive in archinstall.arguments.get('harddrives', []):
             if archinstall.storage.get('disk_layouts', {}).get(drive.path):
                 with archinstall.Filesystem(drive, mode) as fs:
+                    for p in fs.blockdevice.partitions.values():
+                        p.unmount()
                     fs.load_layout(archinstall.storage['disk_layouts'][drive.path])
 
 def perform_installation(mountpoint):

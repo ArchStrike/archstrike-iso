@@ -7,8 +7,8 @@
         "pacman-key --init",
         "dirmngr < /dev/null",
         "curl https://archstrike.org/keyfile.asc -o keyfile.asc",
-	"curl https://archstrike.org/keyfile-checksum -o keyfile-checksum",
-	"sha512sum -c keyfile-checksum",
+        "curl https://archstrike.org/keyfile-checksum -o keyfile-checksum",
+        "sha512sum -c keyfile-checksum",
         "pacman-key --add keyfile.asc",
         "rm keyfile.asc keyfile-checksum",
         "pacman -S --noconfirm archstrike-keyring",
@@ -17,13 +17,13 @@
         "pacman -Syy",
         "sed -i -e 's/Arch Linux/ArchStrike/g' /boot/grub/grub.cfg",
         "pacman -S --noconfirm archstrike-xfce-config archstrike-menu vim git tmux",
-	"mkdir -pv /etc/skel/.config; cp -a /usr/share/archstrike-xfce-config/config/xfce4 /etc/skel/.config/",
-	"mkdir -pv /root/${d}/.config; cp -a /usr/share/archstrike-xfce-config/config/xfce4 /root/.config/",
-	"for d in $(ls /home/); do mkdir -pv /home/${d}/.config; cp -a /usr/share/archstrike-xfce-config/config/xfce4 /home/${d}/.config/; done",
-	"for d in $(ls /home/); do chown -R $(stat -c '%U:%G' /home/${d}) /home/${d}; done",
-	"cp -a /usr/share/archstrike-xfce-config/icons/* /usr/share/pixmaps/",
-	"cp -a /usr/share/archstrike-xfce-config/wallpapers/* /usr/share/backgrounds/xfce/",
-	"cp -a /usr/share/backgrounds/xfce/{archstrike_wallpaper.jpg,xfce-verticals.png}"
+        "mkdir -pv /etc/skel/.config; cp -a /usr/share/archstrike-xfce-config/config/xfce4 /etc/skel/.config/",
+        "mkdir -pv /root/${d}/.config; cp -a /usr/share/archstrike-xfce-config/config/xfce4 /root/.config/",
+        "for d in $(ls /home/); do mkdir -pv /home/${d}/.config; cp -a /usr/share/archstrike-xfce-config/config/xfce4 /home/${d}/.config/; done",
+        "for d in $(ls /home/); do chown -R $(stat -c '%U:%G' /home/${d}) /home/${d}; done",
+        "cp -a /usr/share/archstrike-xfce-config/icons/* /usr/share/pixmaps/",
+        "cp -a /usr/share/archstrike-xfce-config/wallpapers/* /usr/share/backgrounds/xfce/",
+        "cp -a /usr/share/backgrounds/xfce/{archstrike_wallpaper.jpg,xfce-verticals.png}"
     ],
     "nic": {
         "NetworkManager": true
@@ -42,7 +42,7 @@
     },
     "packages": [],
     "profile": "xfce4",
-    "!root-password": "root",
+    "!root-password": "Keep root login disabled.",
 	"!superusers": {
 		"admin": {"!password": "admin"}
 	},

@@ -1,11 +1,30 @@
 {
-    "bootloader": "grub-install",
+    "script": "archstrike-guided",
     "hostname": "archstrike",
+    "bootloader": "grub-install",
     "keyboard-layout": "us",
+    "gfx_driver": "All open-source (default)",
+    "nic": "Copy ISO network configuration to installation",
+    "harddrives": [
+        "/dev/loop0"
+    ],
+    "swap": true,
+    "kernels": [
+        "linux"
+    ],
+	"!superusers": {
+		"arch": {"!password": "arch"}
+	},
+    "ntp": true,
+    "timezone": "America/Chicago",
+    "sys-language": "en_US",
+    "sys-encoding": "utf-8",
+    "profile": null,
     "custom-commands": [
         "sed -e 's/^#ParallelDownloads = 5/ParallelDownloads = 2/1' -i /etc/pacman.conf",
         "pacman -Syyu --noconfirm",
-        "pacman -Sy --noconfirm vim devtools pacman-contrib reflector",
+        "pacman -Sy --noconfirm --needed vim devtools pacman-contrib reflector linux-headers cloud-init aws-cli",
+        "systemctl enable cloud-init.service cloud-final.service",
         "reflector --delay 24 -c US -p 'http,https' --isos --ipv4 --sort rate --threads 4 --save /etc/pacman.d/mirrorlist",
         "echo -e '[archstrike]\nServer = https://mirror.archstrike.org/$arch/$repo' >> /etc/pacman.conf",
         "pacman-key --init",
@@ -20,14 +39,10 @@
         "sed 's|^Serv.*archstrike.*|Include = /etc/pacman.d/archstrike-mirrorlist|1' -i /etc/pacman.conf",
         "pacman -Syy --noconfirm",
         "sed -e 's/Arch/ArchStrike/1' -i /etc/grub.d/10_linux",
-        "sed -e 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/1' -i /etc/default/grub",
-        "sed -e 's/LINUX_DEFAULT=.*/LINUX_DEFAULT=\"quiet loglevel=3 rd.systemd.show_status=false rd.udev.log_level=3\"/1' -i /etc/default/grub",
         "grub-mkconfig -o /boot/grub/grub.cfg",
         "sed -e '/^#PasswordAuthentication yes$/c PasswordAuthentication no' -i /etc/default/grub",
-        "systemctl enable sshd",
         "pacman -Scc --noconfirm"
     ],
-    "nic": 'Copy ISO network configuration to installation',
     "mirror-region": {
         "United States": {
             "https://arlm.tyzoid.com/$repo/os/$arch": true,
@@ -39,14 +54,5 @@
             "https://plug-mirror.rcac.purdue.edu/archlinux/$repo/os/$arch": true,
             "https://mirror.arizona.edu/archlinux/$repo/os/$arch": true
         }
-    },
-    "packages": [],
-	"!superusers": {
-		"admin": {"!password": "admin"}
-	},
-    "ntp": true,
-    "swap": true,
-    "timezone": "America/Chicago",
-    "sys-language": "en_US",
-    "sys-encoding": "utf-8"
+    }
 }

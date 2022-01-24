@@ -75,7 +75,7 @@ sudo cp -bv {/tmp,/etc/pacman.d}/mirrorlist
 ### Test Arch Installer Script w/o ISO
 These instructions are based on the [upstream README.md](https://github.com/archlinux/archinstall#without-a-live-iso-image) for `archinstall`. Before starting, check the upstream documentation and make sure that `/dev/loop0p*` does not exist from previous testing.
 ```shell
-truncate -s 20G testimage.img
+truncate -s 10G testimage.img
 sudo losetup -fP ./testimage.img
 sudo losetup -a | grep "testimage.img" | awk -F ":" '{print $1}'
 sudo pacman -Sy --needed archinstall
@@ -92,23 +92,31 @@ pushd ./configs/archstrike/airootfs/root/.config/archinstall/
 sudo archinstall --config ./profiles/usa-default.json --script archstrike-guided
 popd
 ```
-To test USA the advanced configuration profile, run the command below.
+To test the advanced configuration profile, run the command below.
 ```shell
 pushd ./configs/archstrike/airootfs/root/.config/archinstall/
 sudo archinstall --config ./profiles/advanced.json --script archstrike-guided
+popd
+```
+To test the AMI configuration profile, run the command below.
+```shell
+pushd ./configs/archstrike/airootfs/root/.config/archinstall/
+sudo pacman -Sy --need qemu-block-iscsi
+sudo archinstall --config ./profiles/ami-default.json --disk_layouts=$(realpath ./profiles/ami-disk-layout.json) --silent
+qemu-img convert -f raw -O vmdk -o adapter_type=lsilogic,subformat=streamOptimized,compat6 testimage.img archstrike.vmdk
+aws s3 cp ./archstrike.vmdk s3://archstrike-iso
+gpg -sb ./archstrike.vmdk 
+aws s3 cp ./archstrike.vmdk.sig s3://archstrike-iso
+aws ec2 import-image --description "ArchStrike Disk" --disk-containers "file://./cloud/aws-disk-image.json"
+aws ec2 describe-import-image-tasks --import-task-ids "import-ami-0955350d57cee9d29
 popd
 ```
 Once complete, you should see a message stating `Installation completed without any errors.` If you wish to virtualize your test, then use `qemu` and your `testimage.img`.
 ```shell
 qemu-system-x86_64 -enable-kvm -machine q35,accel=kvm -device intel-iommu -cpu host -m 4096 -boot order=d -drive file=./testimage.img,format=raw -drive if=pflash,format=raw,readonly,file=/usr/share/ovmf/x64/OVMF_CODE.fd -drive if=pflash,format=raw,readonly,file=/usr/share/ovmf/x64/OVMF_VARS.fd
 ```
-Using ramdisk may improve I/O performance when running `make`. To set mount ramdisk to `/opt/archstrike-iso-build`, try the following.
+Using ramdisk may improve I/O performance when running `make`. To set mount ramdisk to `/opt/archstrike-iso-build`, try the running `./bin/init-ramdisk-build`.
 ```shell
-modprobe brd rd_nr=1 rd_size=8388608
-parted /dev/ram0 mklabel gpt mkpart P1 ext4 1MiB 100%
-parted /dev/ram0  mkpart primary ext4 0% 100%
-mkfs.ext4 /dev/ram0p1
-mount /dev/ram0p1 /opt/archstrike-iso-build/
 ```
 ### Test ArchStrike ISO in QEMU
 Set the variable `image` value as the absolute path to the ArchStrike ISO.

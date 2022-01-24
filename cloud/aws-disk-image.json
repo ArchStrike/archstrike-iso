@@ -1,0 +1,7 @@
+[
+  {
+    "Description": "ArchStrike",
+    "Format": "vmdk",
+    "Url": "s3://archstrike-iso/archstrike.vmdk"
+  }
+]
