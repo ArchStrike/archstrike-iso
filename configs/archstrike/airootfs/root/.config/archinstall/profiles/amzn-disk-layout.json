@@ -14,21 +14,6 @@
                 "start": 4096,
                 "type": "primary",
                 "wipe": false
-            },
-            {
-                "ESP": false,
-                "PARTUUID": "6b04abc9-3f7a-46e5-b847-1550b3bdd82c",
-                "boot": true,
-                "encrypted": false,
-                "filesystem": {
-                    "format": ""
-                },
-                "mountpoint": "/boot",
-                "size": 2048,
-                "start": 2048,
-                "type": "primary",
-                "wipe": false
-            }
-        ]
+            }        ]
     }
 }
