@@ -14,6 +14,7 @@
                 "start": 4096,
                 "type": "primary",
                 "wipe": false
-            }        ]
+            }        
+        ]
     }
 }
