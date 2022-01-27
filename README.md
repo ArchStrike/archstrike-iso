@@ -83,7 +83,7 @@ sudo pacman -Sy --needed archinstall
 To smoke test the script, run the command below
 ```shell
 pushd test
-sudo archinstall --config ./profiles/test-loop0.json --disk_layouts=$(realpath ./profiles/disk-layout.json) --script archstrike-guided
+sudo archinstall --config ./profiles/test-loop0.json --disk_layouts=$(realpath ./profiles/ami-disk-layout.json) --script archstrike-guided
 popd
 ```
 To test USA default configuration profile, run the command below.
