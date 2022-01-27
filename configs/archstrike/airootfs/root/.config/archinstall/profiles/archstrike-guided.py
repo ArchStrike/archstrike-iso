@@ -23,6 +23,18 @@ archinstall.log(f"Graphics devices detected: {archinstall.graphics_devices().key
 # For support reasons, we'll log the disk layout pre installation to match against post-installation layout
 archinstall.log(f"Disk states before installing: {archinstall.disk_layouts()}", level=logging.DEBUG)
 
+
+def is_chroot():
+    """Uses systemd-detect-virt to detect if we are in chroot, if not avail, raise RuntimeWarning"""
+    exit_code = archinstall.lib.general.SysCommand('systemd-detect-virt -r').exit_code
+    if exit_code == 127:
+        return False  # Executable not found
+    elif exit_code == 1:
+        return False  # Non-chroot env found
+    else:
+        return True
+
+
 def load_config():
     if archinstall.arguments.get('harddrives', None) is not None:
         if type(archinstall.arguments['harddrives']) is str:
@@ -60,8 +72,9 @@ def load_config():
         else:
             try:
                 archinstall.storage['disk_layouts'] = json.loads(archinstall.arguments['disk_layouts'])
-            except:
+            except Exception:
                 raise ValueError("--disk_layouts=<json> needs either a JSON file or a JSON string given with a valid disk layout.")
+
 
 def ask_user_questions():
     """
@@ -104,9 +117,8 @@ def ask_user_questions():
     # Ask which harddrives/block-devices we will install to
     # and convert them into archinstall.BlockDevice() objects.
     if archinstall.arguments.get('harddrives', None) is None:
-        archinstall.arguments['harddrives'] = archinstall.generic_multi_select(archinstall.all_disks(),
-                                                text="Select one or more harddrives to use and configure (leave blank to skip this step): ",
-                                                allow_empty=True)
+        _prompt = "Select one or more harddrives to use and configure (leave blank to skip this step): "
+        archinstall.arguments['harddrives'] = archinstall.generic_multi_select(archinstall.all_disks(), text=_prompt, allow_empty=True)
 
     if archinstall.arguments.get('harddrives', None) is not None and archinstall.storage.get('disk_layouts', None) is None:
         archinstall.storage['disk_layouts'] = archinstall.select_disk_layout(archinstall.arguments['harddrives'], archinstall.arguments.get('advanced', False))
@@ -207,7 +219,7 @@ def perform_filesystem_operations():
     print()
     print('This is your chosen configuration:')
     archinstall.log("-- Guided template chosen (with below config) --", level=logging.DEBUG)
-    user_configuration = json.dumps({**archinstall.arguments, 'version' : archinstall.__version__} , indent=4, sort_keys=True, cls=archinstall.JSON)
+    user_configuration = json.dumps({**archinstall.arguments, 'version': archinstall.__version__}, indent=4, sort_keys=True, cls=archinstall.JSON)
     archinstall.log(user_configuration, level=logging.INFO)
     with open("/var/log/archinstall/user_configuration.json", "w") as config_file:
         config_file.write(user_configuration)
@@ -248,6 +260,7 @@ def perform_filesystem_operations():
                         p.unmount()
                     fs.load_layout(archinstall.storage['disk_layouts'][drive.path])
 
+
 def perform_installation(mountpoint):
     user_credentials = {}
     if archinstall.arguments.get('!users'):
@@ -274,16 +287,18 @@ def perform_installation(mountpoint):
         # Placing /boot check during installation because this will catch both re-use and wipe scenarios.
         for partition in installation.partitions:
             if partition.mountpoint == installation.target + '/boot':
-                if partition.size <= 0.25: # in GB
-                    raise archinstall.DiskError(f"The selected /boot partition in use is not large enough to properly install a boot loader. Please resize it to at least 256MB and re-run the installation.")
+                if partition.size <= 0.25:  # in GB
+                    _msg = "The selected /boot partition in use is not large enough to properly install a boot loader. "
+                    _msg += "Please resize it to at least 256MB and re-run the installation."
+                    raise archinstall.DiskError(_msg)
 
-        # if len(mirrors):
         # Certain services might be running that affects the system during installation.
         # Currently, only one such service is "reflector.service" which updates /etc/pacman.d/mirrorlist
         # We need to wait for it before we continue since we opted in to use a custom mirror/region.
-        installation.log('Waiting for automatic mirror selection (reflector) to complete.', level=logging.INFO)
-        while archinstall.service_state('reflector') not in ('dead', 'failed'):
-            time.sleep(1)
+        if not is_chroot():
+            installation.log('Waiting for automatic mirror selection (reflector) to complete.', level=logging.INFO)
+            while archinstall.service_state('reflector') not in ('dead', 'failed'):
+                time.sleep(1)
         # Set mirrors used by pacstrap (outside of installation)
         if archinstall.arguments.get('mirror-region', None):
             archinstall.use_mirrors(archinstall.arguments['mirror-region'])  # Set the mirrors for the live medium
@@ -372,7 +387,7 @@ def perform_installation(mountpoint):
             if choice.lower() in ("y", ""):
                 try:
                     installation.drop_to_shell()
-                except:
+                except Exception:
                     pass
 
     # For support reasons, we'll log the disk layout post installation (crash or no crash)
