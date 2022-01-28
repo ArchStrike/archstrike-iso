@@ -16,7 +16,7 @@
             {
                 "encrypted": false,
                 "filesystem": {
-                    "format": "ext4"
+                    "format": "xfs"
                 },
                 "format": true,
                 "mountpoint": "/",
