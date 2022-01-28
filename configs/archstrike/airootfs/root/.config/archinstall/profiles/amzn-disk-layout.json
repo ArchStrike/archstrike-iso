@@ -1,20 +1,30 @@
 {
-    "/dev/nvme0n1": {
+    "/dev/nvme1n1": {
         "partitions": [
             {
-                "ESP": false,
-                "PARTUUID": "38ba1a45-80a7-46ca-89ac-8ea8972fef53",
-                "boot": false,
+                "boot": true,
+                "encrypted": false,
+                "filesystem": {
+                    "format": "fat32"
+                },
+                "format": true,
+                "mountpoint": "/boot",
+                "size": "513MB",
+                "start": "5MB",
+                "type": "primary"
+            },
+            {
                 "encrypted": false,
                 "filesystem": {
                     "format": "xfs"
                 },
+                "format": true,
                 "mountpoint": "/",
-                "size": 20967391,
-                "start": 4096,
-                "type": "primary",
-                "wipe": false
-            }        
-        ]
+                "size": "100%",
+                "start": "518MB",
+                "type": "primary"
+            }
+        ],
+        "wipe": true
     }
 }
