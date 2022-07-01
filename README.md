@@ -5,7 +5,7 @@ The ArchStrike ISO installs our unofficial user repository mirror through a guid
 Before you build or test, make sure to install any dependencies needed (i.e., [archiso dependencies](https://github.com/archlinux/archiso#requirements))
 ```shell
 sudo pacman -S --needed make devtools edk2-ovmf erofs-utils openssl qemu
-sudo pacman -S --needed arch-install-scripts bash dosfstools e2fsprogs libarchive libisoburn mtools squashfs-tools
+sudo pacman -S --needed arch-install-scripts bash dosfstools e2fsprogs libarchive libisoburn mtools squashfs-tools shellcheck
 ```
 
 ## Submodule
@@ -20,7 +20,7 @@ To build the ArchStrike ISO, simply run `make` in userland. Equivalently, you ca
 ```shell
 make check
 make clean
-make build
+make build-iso
 make sign
 ```
 To use a non-default gpg key to sign, run `GPG_OPTIONS="--default-key <your-key-id>" make sign` in userland.    
